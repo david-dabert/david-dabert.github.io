@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV en ligne – David Dabert</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #020617;
+      --section-alt: #020617;
+      --card-bg: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --radius-lg: 16px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 24px 70px rgba(15, 23, 42, 0.85);
+      --max-width: 1080px;
+    }
+ 
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+ 
+    html {
+      scroll-behavior: smooth;
+    }
+ 
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, #0f172a 0, transparent 45%),
+        radial-gradient(circle at bottom right, #020617 0, #000 55%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+ 
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+ 
+    /* HEADER / HERO */
+    header {
+      position: relative;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      backdrop-filter: blur(18px);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.86));
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.8);
+    }
+ 
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.5rem 0.6rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+    }
+ 
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+ 
+    .brand h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      letter-spacing: 0.03em;
+    }
+ 
+    .brand span {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+ 
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 0.8rem;
+      margin: 0;
+      padding: 0;
+    }
+ 
+    nav a {
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: var(--muted);
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.15s ease-out;
+    }
+ 
+    nav a:hover {
+      color: var(--text);
+      border-color: rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.2), transparent 60%);
+      transform: translateY(-1px);
+    }
+ 
+    .hero {
+      padding: 2.5rem 0 2.2rem;
+    }
+ 
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+ 
+    .hero-title {
+      font-size: 2rem;
+      margin: 0 0 0.6rem;
+    }
+ 
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      margin: 0 0 1.4rem;
+      max-width: 520px;
+    }
+ 
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+ 
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.8);
+    }
+ 
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+ 
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      border: 1px solid var(--accent);
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.25), rgba(15, 23, 42, 0.95));
+      color: var(--text);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease-out;
+    }
+ 
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(56, 189, 248, 0.35);
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #020617;
+    }
+ 
+    .btn-secondary {
+      border-color: rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--muted);
+    }
+ 
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 1));
+    }
+ 
+    .hero-card {
+      position: relative;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.24), rgba(15, 23, 42, 0.98));
+      border-radius: var(--radius-xl);
+      padding: 1.6rem 1.4rem 1.4rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+ 
+    .hero-orbit {
+      position: absolute;
+      inset: -30%;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(56, 189, 248, 0.12), transparent 55%),
+        radial-gradient(circle at 90% 100%, rgba(94, 234, 212, 0.09), transparent 55%);
+      opacity: 0.75;
+      pointer-events: none;
+    }
+ 
+    .hero-profile {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+ 
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 999px;
+      border: 2px solid rgba(148, 163, 184, 0.9);
+      background: radial-gradient(circle at top, #38bdf8, #0f172a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #e5e7eb;
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
+    }
+ 
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+ 
+    .hero-meta span {
+      display: block;
+    }
+ 
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.75rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+ 
+    /* SECTIONS GÉNÉRIQUES */
+    main {
+      padding-bottom: 3rem;
+    }
+ 
+    section {
+      padding: 3.5rem 0 3.2rem;
+    }
+ 
+    section:nth-of-type(even) {
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.6));
+    }
+ 
+    section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+    }
+ 
+    .section-intro {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 620px;
+      margin-bottom: 1.9rem;
+    }
+ 
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+ 
+    .card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-lg);
+      padding: 1.3rem 1.4rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+    }
+ 
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      font-size: 1.05rem;
+    }
+ 
+    /* COMPÉTENCES */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.4rem;
+    }
+ 
+    .chip {
+      font-size: 0.78rem;
+      padding: 0.18rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.9);
+    }
+ 
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+ 
+    .skills-grid ul {
+      margin: 0.3rem 0 0;
+      padding-left: 1.1rem;
+      font-size: 0.9rem;
+    }
+ 
+    .skills-grid li + li {
+      margin-top: 0.2rem;
+    }
+ 
+    /* EXPÉRIENCE – TIMELINE */
+    .timeline {
+      position: relative;
+      margin-top: 1.5rem;
+      padding-left: 1.2rem;
+      border-left: 2px solid rgba(148, 163, 184, 0.4);
+      display: grid;
+      gap: 1.2rem;
+    }
+ 
+    .timeline-item {
+      position: relative;
+      background: rgba(15, 23, 42, 0.98);
+      border-radius: 14px;
+      padding: 0.9rem 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+    }
+ 
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.6rem;
+      top: 0.9rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(56, 189, 248, 0.35);
+    }
+ 
+    .timeline-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      margin-bottom: 0.4rem;
+    }
+ 
+    .timeline-header h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+ 
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+ 
+    .timeline-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+ 
+    .timeline ul {
+      margin: 0.3rem 0 0;
+      padding-left: 1.1rem;
+      font-size: 0.9rem;
+    }
+ 
+    /* VIDÉOS & DOCUMENTS */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+ 
+    video,
+    .video-frame {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      overflow: hidden;
+      margin-top: 0.6rem;
+      background: #020617;
+    }
+ 
+    .video-frame {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+    }
+ 
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+ 
+    .media-desc {
+      margin-top: 0.5rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+ 
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+ 
+    .doc-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+ 
+    .link-inline {
+      font-size: 0.86rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+ 
+    .link-inline:hover {
+      text-decoration: underline;
+    }
+ 
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 1.2rem 0 1.6rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.98);
+    }
+ 
+    a {
+      color: var(--accent);
+    }
+ 
+    a:hover {
+      color: #7dd3fc;
+    }
+ 
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .hero-grid,
+      .split,
+      .skills-grid,
+      .media-grid,
+      .docs-grid {
+        grid-template-columns: 1fr;
+      }
+ 
+      .hero {
+        padding: 2rem 0 2.2rem;
+      }
+    }
+ 
+    @media (max-width: 720px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+ 
+      nav ul {
+        flex-wrap: wrap;
+      }
+    }
+ 
+    @media (max-width: 540px) {
+      section {
+        padding: 3rem 0 2.7rem;
+      }
+ 
+      .card {
+        padding: 1.1rem 1.1rem;
+      }
+ 
+      .hero-card {
+        padding: 1.3rem 1.2rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <h1>David Dabert</h1>
+        <span>Creative Strategist / Direction Artistique & Storytelling Visuel</span>
+      </div>
+      <nav aria-label="Navigation principale">
+        <ul>
+          <li><a href="#about">Profil</a></li>
+          <li><a href="#skills">Compétences</a></li>
+          <li><a href="#experience">Expériences</a></li>
+          <li><a href="#videos">Vidéos</a></li>
+          <li><a href="#documents">Documents</a></li>
+        </ul>
+      </nav>
+    </div>
+ 
+    <div class="container hero">
+      <div class="hero-grid">
+        <div>
+          <p class="pill">Disponible pour opportunités · Freelance / CDI</p>
+          <h2 class="hero-title">Stratège créatif. Tisseur de récits. Alchimiste culturel.</h2>
+          <p class="hero-subtitle">
+            Stratège créatif à l'intersection du design, du bien-être et de l’innovation visuelle, j’imagine des identités puissantes et émotionnellement engageantes. Mon approche mêle storytelling de marque, design rétrofuturiste et direction artistique fondée sur la beauté, la simplicité et la profondeur symbolique. Je conçois des systèmes créatifs qui marquent, unifient et inspirent.
+          </p>
+ 
+          <div class="hero-tags">
+            <span class="tag">Stratégie de marque</span>
+            <span class="tag">Identité visuelle</span>
+            <span class="tag">DALL·E</span>
+            <span class="tag">Midjourney</span>
+            <span class="tag">Intuition créative & pensée systémique</span>
+          </div>
+ 
+          <div class="hero-actions">
+            <a href="#experience" class="btn">Voir mes expériences</a>
+            <a href="#videos" class="btn btn-secondary">Voir mes vidéos</a>
+          </div>
+        </div>
+ 
+        <aside class="hero-card" aria-label="Résumé rapide">
+          <div class="hero-orbit"></div>
+          <div class="hero-profile">
+            <div class="avatar" aria-hidden="true">DD</div>
+            <div class="hero-meta">
+              <div>
+                <span><strong>Localisation</strong></span>
+                <span>Bordeaux, France</span>
+              </div>
+              <div>
+                <span><strong>Expérience</strong></span>
+                <span>+5 ans en narration, design</span>
+              </div>
+              <div>
+                <span><strong>Statut</strong></span>
+                <span>En recherche</span>
+              </div>
+              <div>
+                <span><strong>Contact</strong></span>
+                <span><a class="link-inline" href="mailto:prenom.nom@email.com">d.dabert89@gmail.com</a></span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+ 
+  <main>
+    <!-- PROFIL -->
+    <section id="about">
+      <div class="container split">
+        <div>
+          <h2>Profil</h2>
+          <p class="section-intro">
+            De formation littéraire et humaniste, je me suis forgé un parcours hybride entre projets européens, communication associative et direction créative sur le terrain. Avec plus de 10 ans d’expérience dans la rédaction, la structuration d’idées et la gestion de projets à impact, j’ai élargi mes compétences vers le design visuel, les réseaux sociaux et la stratégie de marque ; en autodidacte passionné, avec une forte capacité d’apprentissage et d'adaptation.
+          </p>
+          <div class="card">
+            <p>
+             Savoir-faire : Storytelling, branding, identité visuelle, contenus digitaux. Capacité à structurer et incarner des univers de marque.
+            </p>
+            <p>
+              Objectif actuel : Poste de Creative Strategist ou Content Designer, en CDI ou freelance, dans un environnement engagé (design, bien-être, impact).
+            </p>
+          </div>
+        </div>
+ 
+        <aside>
+          <div class="card">
+            <h3>Infos clés</h3>
+            <ul style="margin:0.4rem 0 0; padding-left:1.1rem; font-size:0.9rem;">
+              <li>Langues : Anglais/Français/Espagnol (C2), Arabe/Grec (B2)
+              <li>Mobilité : Bordeaux / Full remote / Déplacements OK</li>
+              <li>Disponibilité : immédiate</li>
+              <li>Type de contrat : CDI, Freelance, etc.</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+ 
+    <!-- COMPÉTENCES -->
+    <section id="skills">
+      <div class="container">
+        <h2>Compétences</h2>
+        <p class="section-intro">
+          Vue synthétique de tes forces techniques et transverses. Garde 3 blocs lisibles plutôt qu'une liste interminable.
+        </p>
+ 
+        <div class="chips">
+          <span class="chip">Compétence clé 1</span>
+          <span class="chip">Compétence clé 2</span>
+          <span class="chip">Compétence clé 3</span>
+          <span class="chip">Technologie 1</span>
+          <span class="chip">Technologie 2</span>
+          <span class="chip">Soft skill 1</span>
+        </div>
+ 
+        <div class="skills-grid">
+          <div class="card">
+            <h3>💡 Expertise principale</h3>
+            <ul>
+              <li>Direction créative (branding, réseaux sociaux, storytelling).</li>
+              <li>Gestion de projets européens (Erasmus+, Horizon).</li>
+              <li>Création de contenus visuels et narratifs (ateliers, conférences, formats print/Instagram).</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>🛠️ Techniques</h3>
+            <ul>
+              <li>Figma, Canva Pro, Midjourney, DALL·E.</li>
+              <li>Notion, Trello, Miro (organisation, collaboration)</li>
+              <li>Suite Google, Office, montage simple (CapCut)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>🤝 Soft skills</h3>
+            <ul>
+              <li>Vision stratégique & esthétique, esprit de synthèse.</li>
+              <li>Empathie, adaptabilité interculturelle, pédagogie.</li>
+              <li>Esprit d’initiative, rigueur, autonomie forte en remote.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- EXPÉRIENCES -->
+    <section id="experience">
+      <div class="container">
+        <h2>Expériences</h2>
+        <p class="section-intro">
+          Sélectionne 3–4 expériences qui montrent une progression logique et des résultats concrets, plutôt qu'une liste brute.
+        </p>
+ 
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-header">
+              <h3>Consultant en ingénierie de projets européens</h3>
+              <span class="timeline-company">Niamato Consulting </span>
+            </div>
+            <div class="timeline-meta">
+              <span>2021 – Aujourd'hui</span>
+              <span>Bordeaux, France</span>
+            </div>
+            <ul>
+              <li>Accompagnement de porteurs de projets : idéation, rédaction, budget, montage, dépôt (Erasmus+, etc.)</li>
+              <li>Animation de formations trilingues (FR/EN/ES) à la gestion de projet et coopération interculturelle</li>
+              <li>Conseil stratégique, recherche de financements, évaluation d'impact</li>
+            </ul>
+          </article>
+ 
+          <article class="timeline-item">
+            <div class="timeline-header">
+              <h3>Créative & digital project manager</h3>
+              <span class="timeline-company">Universal View</span>
+            </div>
+            <div class="timeline-meta">
+              <span>2024 – 2025</span>
+              <span>Ville, Pays</span>
+            </div>
+            <ul>
+              <li>Responsabilités / missions clés.</li>
+              <li>Technologies ou outils utilisés.</li>
+              <li>Résultat ou livrable marquant.</li>
+            </ul>
+          </article>
+ 
+          <article class="timeline-item">
+            <div class="timeline-header">
+              <h3>Réceptionniste</h3>
+              <span class="timeline-company">Meininger</span>
+            </div>
+            <div class="timeline-meta">
+              <span>2022-2024</span>
+              <span>Bordeaux, France</span>
+            </div>
+            <ul>
+              <li>Expérience en lien direct avec ce que tu vises aujourd'hui.</li>
+              <li>Responsabilités clés.</li>
+              <li>Impact ou apprentissage important.</li>
+            </ul>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-header">
+              <h3>Chef de projet</h3>
+              <span class="timeline-company">Groupe Senghor</span>
+            </div>
+            <div class="timeline-meta">
+              <span>2018</span>
+              <span>Dakar, Sénégal</span>
+            </div>
+            <ul>
+              <li>Responsabilités / missions clés.</li>
+              <li>Technologies ou outils utilisés.</li>
+              <li>Résultat ou livrable marquant.</li>
+            </ul>
+          </article>
+          
+          <article class="timeline-item">
+            <div class="timeline-header">
+              <h3>Responsable projets évennementiels</h3>
+              <span class="timeline-company">Revolution Party</span>
+            </div>
+            <div class="timeline-meta">
+              <span>2009-2017</span>
+              <span>Dakar, Sénégal</span>
+            </div>
+            <ul>
+              <li>Conception et promotion de 200+ événements (soirées, concerts)</li>
+              <li>Partenariats culturels, logistique, communication visuelle</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- VIDÉOS -->
+    <section id="videos">
+      <div class="container">
+        <h2>Vidéos</h2>
+        <p class="section-intro">
+          Démos, présentations, contenus pédagogiques ou techniques. Mets ici ce qui illustre le mieux ta façon d'expliquer et de travailler.
+        </p>
+ 
+        <div class="media-grid">
+          <article class="card">
+            <h3>Titre de la vidéo locale</h3>
+            <video controls preload="metadata">
+              <source src="video.mp4" type="video/mp4" />
+              Votre navigateur ne supporte pas la balise vidéo.
+            </video>
+            <p class="media-desc">
+              Contexte de la vidéo : pour qui, sur quoi, durée, ce que tu y montres.
+            </p>
+          </article>
+ 
+          <article class="card">
+            <h3>Titre de la vidéo externe (YouTube, etc.)</h3>
+            <div class="video-frame">
+              <iframe src="https://www.youtube.com/embed/ID_DE_TA_VIDEO" title="Vidéo YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <p class="media-desc">
+              Résumé : ce que la vidéo démontre (compétence technique, pédagogie, vulgarisation…).
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- DOCUMENTS -->
+    <section id="documents">
+      <div class="container">
+        <h2>Documents</h2>
+        <p class="section-intro">
+          Rapports, articles, supports de formation ou livrables clients que tu peux partager publiquement.
+        </p>
+ 
+        <div class="docs-grid">
+          <article class="card">
+            <h3>Rapport / Article 1</h3>
+            <p class="doc-meta">Type de document · Année · Contexte (école, pro, perso).</p>
+            <p>
+              Résumé en 2–3 phrases : objectif du document, ton rôle, public cible.
+            </p>
+            <a class="btn" href="doc.pdf" target="_blank" rel="noopener">Ouvrir le document (PDF)</a>
+          </article>
+ 
+          <article class="card">
+            <h3>Présentation 1</h3>
+            <p class="doc-meta">Présentation · Année · Public (équipe, clients, étudiants…).</p>
+            <p>
+              Quelques mots sur le sujet et ce que tu y expliques.
+            </p>
+            <a class="btn btn-secondary" href="presentation.pdf" target="_blank" rel="noopener">Voir la présentation</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+ 
+  <footer>
+    <div class="container">
+      <p>© <span id="year">2025</span> · Prénom Nom – CV en ligne</p>
+    </div>
+  </footer>
+</body>
+</html>
+ 
