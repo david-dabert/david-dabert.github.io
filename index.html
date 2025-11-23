@@ -1,826 +1,553 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CV en ligne – David Dabert</title>
-  <style>
-    :root {
-      --bg: #020617;
-      --bg-alt: #020617;
-      --section-alt: #020617;
-      --card-bg: #020617;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.15);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --border: #1f2937;
-      --radius-lg: 16px;
-      --radius-xl: 26px;
-      --shadow-soft: 0 24px 70px rgba(15, 23, 42, 0.85);
-      --max-width: 1080px;
-    }
- 
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
- 
-    html {
-      scroll-behavior: smooth;
-    }
- 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, #0f172a 0, transparent 45%),
-        radial-gradient(circle at bottom right, #020617 0, #000 55%);
-      color: var(--text);
-      line-height: 1.6;
-    }
- 
-    .container {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
- 
-    /* HEADER / HERO */
-    header {
-      position: relative;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-      backdrop-filter: blur(18px);
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.86));
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.8);
-    }
- 
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.9rem 1.5rem 0.6rem;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.22);
-    }
- 
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
- 
-    .brand h1 {
-      margin: 0;
-      font-size: 1.5rem;
-      letter-spacing: 0.03em;
-    }
- 
-    .brand span {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
- 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 0.8rem;
-      margin: 0;
-      padding: 0;
-    }
- 
-    nav a {
-      display: inline-block;
-      padding: 0.35rem 0.75rem;
-      font-size: 0.85rem;
-      text-decoration: none;
-      color: var(--muted);
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: all 0.15s ease-out;
-    }
- 
-    nav a:hover {
-      color: var(--text);
-      border-color: rgba(148, 163, 184, 0.4);
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.2), transparent 60%);
-      transform: translateY(-1px);
-    }
- 
-    .hero {
-      padding: 2.5rem 0 2.2rem;
-    }
- 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
-      gap: 2.5rem;
-      align-items: center;
-    }
- 
-    .hero-title {
-      font-size: 2rem;
-      margin: 0 0 0.6rem;
-    }
- 
-    .hero-subtitle {
-      font-size: 1rem;
-      color: var(--muted);
-      margin: 0 0 1.4rem;
-      max-width: 520px;
-    }
- 
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
- 
-    .tag {
-      font-size: 0.75rem;
-      padding: 0.2rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.8);
-    }
- 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
- 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.35rem;
-      padding: 0.55rem 1.1rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      border: 1px solid var(--accent);
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.25), rgba(15, 23, 42, 0.95));
-      color: var(--text);
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.15s ease-out;
-    }
- 
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 45px rgba(56, 189, 248, 0.35);
-      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-      color: #020617;
-    }
- 
-    .btn-secondary {
-      border-color: rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--muted);
-    }
- 
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      color: var(--text);
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 1));
-    }
- 
-    .hero-card {
-      position: relative;
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.24), rgba(15, 23, 42, 0.98));
-      border-radius: var(--radius-xl);
-      padding: 1.6rem 1.4rem 1.4rem;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-    }
- 
-    .hero-orbit {
-      position: absolute;
-      inset: -30%;
-      background:
-        radial-gradient(circle at 10% 0%, rgba(56, 189, 248, 0.12), transparent 55%),
-        radial-gradient(circle at 90% 100%, rgba(94, 234, 212, 0.09), transparent 55%);
-      opacity: 0.75;
-      pointer-events: none;
-    }
- 
-    .hero-profile {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
- 
-    .avatar {
-      width: 90px;
-      height: 90px;
-      border-radius: 999px;
-      border: 2px solid rgba(148, 163, 184, 0.9);
-      background: radial-gradient(circle at top, #38bdf8, #0f172a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      font-weight: 600;
-      color: #e5e7eb;
-      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
-    }
- 
-    .hero-meta {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
- 
-    .hero-meta span {
-      display: block;
-    }
- 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.75rem;
-      padding: 0.18rem 0.6rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-    }
- 
-    /* SECTIONS GÉNÉRIQUES */
-    main {
-      padding-bottom: 3rem;
-    }
- 
-    section {
-      padding: 3.5rem 0 3.2rem;
-    }
- 
-    section:nth-of-type(even) {
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.6));
-    }
- 
-    section h2 {
-      font-size: 1.6rem;
-      margin-bottom: 0.4rem;
-    }
- 
-    .section-intro {
-      color: var(--muted);
-      font-size: 0.95rem;
-      max-width: 620px;
-      margin-bottom: 1.9rem;
-    }
- 
-    .split {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
-      gap: 1.8rem;
-      align-items: flex-start;
-    }
- 
-    .card {
-      background: rgba(15, 23, 42, 0.95);
-      border-radius: var(--radius-lg);
-      padding: 1.3rem 1.4rem;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
-    }
- 
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 0.6rem;
-      font-size: 1.05rem;
-    }
- 
-    /* COMPÉTENCES */
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.4rem;
-    }
- 
-    .chip {
-      font-size: 0.78rem;
-      padding: 0.18rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      background: rgba(15, 23, 42, 0.9);
-    }
- 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.1rem;
-    }
- 
-    .skills-grid ul {
-      margin: 0.3rem 0 0;
-      padding-left: 1.1rem;
-      font-size: 0.9rem;
-    }
- 
-    .skills-grid li + li {
-      margin-top: 0.2rem;
-    }
- 
-    /* EXPÉRIENCE – TIMELINE */
-    .timeline {
-      position: relative;
-      margin-top: 1.5rem;
-      padding-left: 1.2rem;
-      border-left: 2px solid rgba(148, 163, 184, 0.4);
-      display: grid;
-      gap: 1.2rem;
-    }
- 
-    .timeline-item {
-      position: relative;
-      background: rgba(15, 23, 42, 0.98);
-      border-radius: 14px;
-      padding: 0.9rem 1.1rem;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
-    }
- 
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -1.6rem;
-      top: 0.9rem;
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 5px rgba(56, 189, 248, 0.35);
-    }
- 
-    .timeline-header {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-      margin-bottom: 0.4rem;
-    }
- 
-    .timeline-header h3 {
-      margin: 0;
-      font-size: 1rem;
-    }
- 
-    .timeline-company {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
- 
-    .timeline-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.3rem;
-    }
- 
-    .timeline ul {
-      margin: 0.3rem 0 0;
-      padding-left: 1.1rem;
-      font-size: 0.9rem;
-    }
- 
-    /* VIDÉOS & DOCUMENTS */
-    .media-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.2rem;
-    }
- 
-    video,
-    .video-frame {
-      width: 100%;
-      border-radius: 12px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      overflow: hidden;
-      margin-top: 0.6rem;
-      background: #020617;
-    }
- 
-    .video-frame {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-    }
- 
-    .video-frame iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
- 
-    .media-desc {
-      margin-top: 0.5rem;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
- 
-    .docs-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.1rem;
-    }
- 
-    .doc-meta {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-    }
- 
-    .link-inline {
-      font-size: 0.86rem;
-      color: var(--accent);
-      text-decoration: none;
-    }
- 
-    .link-inline:hover {
-      text-decoration: underline;
-    }
- 
-    /* FOOTER */
-    footer {
-      border-top: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 1.2rem 0 1.6rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--muted);
-      background: rgba(15, 23, 42, 0.98);
-    }
- 
-    a {
-      color: var(--accent);
-    }
- 
-    a:hover {
-      color: #7dd3fc;
-    }
- 
-    /* RESPONSIVE */
-    @media (max-width: 960px) {
-      .hero-grid,
-      .split,
-      .skills-grid,
-      .media-grid,
-      .docs-grid {
-        grid-template-columns: 1fr;
-      }
- 
-      .hero {
-        padding: 2rem 0 2.2rem;
-      }
-    }
- 
-    @media (max-width: 720px) {
-      .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.6rem;
-      }
- 
-      nav ul {
-        flex-wrap: wrap;
-      }
-    }
- 
-    @media (max-width: 540px) {
-      section {
-        padding: 3rem 0 2.7rem;
-      }
- 
-      .card {
-        padding: 1.1rem 1.1rem;
-      }
- 
-      .hero-card {
-        padding: 1.3rem 1.2rem 1.2rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Dabert | Visionary Strategist</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <style>
+        /* --- 1. DESIGN SYSTEM --- */
+        :root {
+            --bg: #080808;
+            --bg-card: #111111;
+            --text-main: #E0E0E0;
+            --text-muted: #888888;
+            --accent: #CCFF00; /* Lime Acide - Coté Tech/Rupture */
+            --accent-soft: rgba(204, 255, 0, 0.1);
+            
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            
+            --gutter: clamp(1.5rem, 5vw, 4rem);
+            --easing: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Reset */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto; }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- 2. TEXTURES & ATMOSPHERE --- */
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 99; opacity: 0.07;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .gradient-orb {
+            position: fixed;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(204,255,0,0.03) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            transition: transform 0.5s ease-out;
+        }
+
+        /* --- 3. CUSTOM CURSOR --- */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+            border-radius: 50%; pointer-events: none; z-index: 9999;
+        }
+        .cursor-dot { width: 8px; height: 8px; background: var(--accent); }
+        .cursor-outline {
+            width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.2);
+            transition: width 0.2s, height 0.2s, background 0.2s;
+        }
+        body.hover-active .cursor-outline {
+            width: 70px; height: 70px;
+            background: rgba(255,255,255,0.05);
+            border-color: var(--accent);
+            mix-blend-mode: difference;
+        }
+
+        /* --- 4. TYPOGRAPHY --- */
+        h1, h2, h3, .display-font { font-family: var(--font-display); font-weight: 800; }
+        .section-title {
+            font-size: clamp(3rem, 8vw, 8rem);
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 4rem;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+            transition: color 0.5s;
+        }
+        .section-container:hover .section-title { color: var(--text-main); -webkit-text-stroke: 0; }
+        
+        .tagline {
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--accent); margin-bottom: 1.5rem; display: block;
+        }
+
+        /* --- 5. LAYOUT UTILS --- */
+        .container { padding: 0 var(--gutter); max-width: 1600px; margin: 0 auto; }
+        .section-padding { padding: 10rem 0; position: relative; z-index: 2; }
+        
+        /* --- 6. HEADER --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 2rem var(--gutter);
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; mix-blend-mode: difference;
+        }
+        .logo { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: white; }
+        nav ul { display: flex; gap: 3rem; list-style: none; }
+        .nav-link { color: white; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px;
+            background: var(--accent); transition: width 0.4s var(--easing);
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* --- 7. HERO --- */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            padding-top: 10vh;
+        }
+        .hero-line { overflow: hidden; display: block; }
+        .hero-text {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 9vw, 9rem);
+            line-height: 0.9; letter-spacing: -0.04em;
+            transform: translateY(120%);
+        }
+        .hero-sub {
+            margin-top: 3rem; max-width: 500px;
+            font-size: 1.2rem; color: var(--text-muted);
+            opacity: 0; transform: translateY(20px);
+        }
+
+        /* --- 8. MANIFESTO (Grid) --- */
+        .manifesto-grid {
+            display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start;
+            border-top: 1px solid rgba(255,255,255,0.1); padding-top: 4rem;
+        }
+        .big-statement {
+            font-size: clamp(1.5rem, 3vw, 3rem); line-height: 1.2;
+        }
+        .highlight { color: var(--accent); font-style: italic; }
+
+        /* --- 9. TIMELINE (Experience) --- */
+        .timeline-row {
+            display: grid; grid-template-columns: 1fr 3fr;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 4rem 0; transition: background 0.3s;
+        }
+        .timeline-row:hover { background: rgba(255,255,255,0.02); }
+        .t-year { font-family: var(--font-display); font-size: 1.5rem; color: var(--text-muted); }
+        .t-content h3 { font-size: 2.5rem; margin-bottom: 0.5rem; font-weight: 400; }
+        .t-role { color: var(--accent); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 1rem; display: block; }
+        .t-desc { max-width: 600px; color: var(--text-muted); line-height: 1.6; }
+
+        /* --- 10. STUDIO / LAB --- */
+        .work-grid {
+            display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem;
+        }
+        .project-card {
+            grid-column: span 6; position: relative;
+            aspect-ratio: 16/10; overflow: hidden;
+            border-radius: 4px; cursor: none;
+        }
+        .project-card.wide { grid-column: span 12; aspect-ratio: 21/9; }
+        
+        .p-img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.7s var(--easing);
+            filter: grayscale(100%);
+        }
+        .project-card:hover .p-img { transform: scale(1.05); filter: grayscale(0%); }
+        
+        .p-overlay {
+            position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem;
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .project-card:hover .p-overlay { opacity: 1; }
+        .p-title { font-size: 2rem; transform: translateY(20px); transition: transform 0.4s; }
+        .project-card:hover .p-title { transform: translateY(0); }
+
+        /* --- 11. FOOTER --- */
+        footer {
+            min-height: 80vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            background: var(--accent); color: var(--bg);
+            padding: 0 var(--gutter);
+        }
+        .cta-huge {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 12rem);
+            line-height: 0.8; letter-spacing: -0.04em;
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+        .cta-huge:hover { transform: scale(0.98); }
+        .footer-links { display: flex; gap: 2rem; font-size: 1.2rem; text-transform: uppercase; font-weight: 500; }
+        .footer-links a { color: var(--bg); border-bottom: 1px solid transparent; }
+        .footer-links a:hover { border-bottom: 1px solid var(--bg); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .manifesto-grid, .timeline-row { grid-template-columns: 1fr; gap: 1rem; }
+            .project-card, .project-card.wide { grid-column: span 12; aspect-ratio: 4/3; }
+            nav { display: none; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="container topbar">
-      <div class="brand">
-        <h1>David Dabert :)</h1>
-        <span>Creative Strategist / Direction Artistique & Storytelling Visuel</span>
-      </div>
-      <nav aria-label="Navigation principale">
-        <ul>
-          <li><a href="#about">Profil</a></li>
-          <li><a href="#skills">Compétences</a></li>
-          <li><a href="#experience">Expériences</a></li>
-          <li><a href="#videos">Vidéos</a></li>
-          <li><a href="#documents">Documents</a></li>
-        </ul>
-      </nav>
-    </div>
- 
-    <div class="container hero">
-      <div class="hero-grid">
-        <div>
-          <p class="pill">Disponible pour opportunités · Freelance / CDI</p>
-          <h2 class="hero-title">Stratège créatif. Tisseur de récits. Alchimiste culturel.</h2>
-          <p class="hero-subtitle">
-            Stratège créatif à l'intersection du design, du bien-être et de l’innovation visuelle, j’imagine des identités puissantes et émotionnellement engageantes. Mon approche mêle storytelling de marque, design rétrofuturiste et direction artistique fondée sur la beauté, la simplicité et la profondeur symbolique. Je conçois des systèmes créatifs qui marquent, unifient et inspirent.
-          </p>
- 
-          <div class="hero-tags">
-            <span class="tag">Stratégie de marque</span>
-            <span class="tag">Identité visuelle</span>
-            <span class="tag">DALL·E</span>
-            <span class="tag">Midjourney</span>
-            <span class="tag">Intuition créative & pensée systémique</span>
-          </div>
- 
-          <div class="hero-actions">
-            <a href="#experience" class="btn">Voir mes expériences</a>
-            <a href="#videos" class="btn btn-secondary">Voir mes vidéos</a>
-          </div>
-        </div>
- 
-        <aside class="hero-card" aria-label="Résumé rapide">
-          <div class="hero-orbit"></div>
-          <div class="hero-profile">
-            <div class="avatar" aria-hidden="true">DD</div>
-            <div class="hero-meta">
-              <div>
-                <span><strong>Localisation</strong></span>
-                <span>Bordeaux, France</span>
-              </div>
-              <div>
-                <span><strong>Expérience</strong></span>
-                <span>+5 ans en narration, design</span>
-              </div>
-              <div>
-                <span><strong>Statut</strong></span>
-                <span>En recherche</span>
-              </div>
-              <div>
-                <span><strong>Contact</strong></span>
-                <span><a class="link-inline" href="mailto:prenom.nom@email.com">d.dabert89@gmail.com</a></span>
-              </div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </header>
- 
-  <main>
-    <!-- PROFIL -->
-    <section id="about">
-      <div class="container split">
-        <div>
-          <h2>Profil</h2>
-          <p class="section-intro">
-            De formation littéraire et humaniste, je me suis forgé un parcours hybride entre projets européens, communication associative et direction créative sur le terrain. Avec plus de 10 ans d’expérience dans la rédaction, la structuration d’idées et la gestion de projets à impact, j’ai élargi mes compétences vers le design visuel, les réseaux sociaux et la stratégie de marque ; en autodidacte passionné, avec une forte capacité d’apprentissage et d'adaptation.
-          </p>
-          <div class="card">
-            <p>
-             Savoir-faire : Storytelling, branding, identité visuelle, contenus digitaux. Capacité à structurer et incarner des univers de marque.
-            </p>
-            <p>
-              Objectif actuel : Poste de Creative Strategist ou Content Designer, en CDI ou freelance, dans un environnement engagé (design, bien-être, impact).
-            </p>
-          </div>
-        </div>
- 
-        <aside>
-          <div class="card">
-            <h3>Infos clés</h3>
-            <ul style="margin:0.4rem 0 0; padding-left:1.1rem; font-size:0.9rem;">
-              <li>Langues : Anglais/Français/Espagnol (C2), Arabe/Grec (B2)
-              <li>Mobilité : Bordeaux / Full remote / Déplacements OK</li>
-              <li>Disponibilité : immédiate</li>
-              <li>Type de contrat : CDI, Freelance, etc.</li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-    </section>
- 
-    <!-- COMPÉTENCES -->
-    <section id="skills">
-      <div class="container">
-        <h2>Compétences</h2>
-        <p class="section-intro">
-          Vue synthétique de tes forces techniques et transverses. Garde 3 blocs lisibles plutôt qu'une liste interminable.
-        </p>
- 
-        <div class="chips">
-          <span class="chip">Compétence clé 1</span>
-          <span class="chip">Compétence clé 2</span>
-          <span class="chip">Compétence clé 3</span>
-          <span class="chip">Technologie 1</span>
-          <span class="chip">Technologie 2</span>
-          <span class="chip">Soft skill 1</span>
-        </div>
- 
-        <div class="skills-grid">
-          <div class="card">
-            <h3>💡 Expertise principale</h3>
-            <ul>
-              <li>Direction créative (branding, réseaux sociaux, storytelling).</li>
-              <li>Gestion de projets européens (Erasmus+, Horizon).</li>
-              <li>Création de contenus visuels et narratifs (ateliers, conférences, formats print/Instagram).</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>🛠️ Techniques</h3>
-            <ul>
-              <li>Figma, Canva Pro, Midjourney, DALL·E.</li>
-              <li>Notion, Trello, Miro (organisation, collaboration)</li>
-              <li>Suite Google, Office, montage simple (CapCut)</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>🤝 Soft skills</h3>
-            <ul>
-              <li>Vision stratégique & esthétique, esprit de synthèse.</li>
-              <li>Empathie, adaptabilité interculturelle, pédagogie.</li>
-              <li>Esprit d’initiative, rigueur, autonomie forte en remote.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
- 
-    <!-- EXPÉRIENCES -->
-    <section id="experience">
-      <div class="container">
-        <h2>Expériences</h2>
-        <p class="section-intro">
-          Sélectionne 3–4 expériences qui montrent une progression logique et des résultats concrets, plutôt qu'une liste brute.
-        </p>
- 
-        <div class="timeline">
-          <article class="timeline-item">
-            <div class="timeline-header">
-              <h3>Consultant en ingénierie de projets européens</h3>
-              <span class="timeline-company">Niamato Consulting </span>
-            </div>
-            <div class="timeline-meta">
-              <span>2021 – Aujourd'hui</span>
-              <span>Bordeaux, France</span>
-            </div>
-            <ul>
-              <li>Accompagnement de porteurs de projets : idéation, rédaction, budget, montage, dépôt (Erasmus+, etc.)</li>
-              <li>Animation de formations trilingues (FR/EN/ES) à la gestion de projet et coopération interculturelle</li>
-              <li>Conseil stratégique, recherche de financements, évaluation d'impact</li>
-            </ul>
-          </article>
- 
-          <article class="timeline-item">
-            <div class="timeline-header">
-              <h3>Créative & digital project manager</h3>
-              <span class="timeline-company">Universal View</span>
-            </div>
-            <div class="timeline-meta">
-              <span>2024 – 2025</span>
-              <span>Ville, Pays</span>
-            </div>
-            <ul>
-              <li>Responsabilités / missions clés.</li>
-              <li>Technologies ou outils utilisés.</li>
-              <li>Résultat ou livrable marquant.</li>
-            </ul>
-          </article>
- 
-          <article class="timeline-item">
-            <div class="timeline-header">
-              <h3>Réceptionniste</h3>
-              <span class="timeline-company">Meininger</span>
-            </div>
-            <div class="timeline-meta">
-              <span>2022-2024</span>
-              <span>Bordeaux, France</span>
-            </div>
-            <ul>
-              <li>Expérience en lien direct avec ce que tu vises aujourd'hui.</li>
-              <li>Responsabilités clés.</li>
-              <li>Impact ou apprentissage important.</li>
-            </ul>
-          </article>
 
-          <article class="timeline-item">
-            <div class="timeline-header">
-              <h3>Chef de projet</h3>
-              <span class="timeline-company">Groupe Senghor</span>
-            </div>
-            <div class="timeline-meta">
-              <span>2018</span>
-              <span>Dakar, Sénégal</span>
-            </div>
+    <div class="noise-overlay"></div>
+    <div class="gradient-orb"></div>
+    
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <header>
+        <a href="#" class="logo" data-hover>DD.</a>
+        <nav>
             <ul>
-              <li>Responsabilités / missions clés.</li>
-              <li>Technologies ou outils utilisés.</li>
-              <li>Résultat ou livrable marquant.</li>
+                <li><a href="#manifesto" class="nav-link" data-hover>Vision</a></li>
+                <li><a href="#experience" class="nav-link" data-hover>Trajectoire</a></li>
+                <li><a href="#studio" class="nav-link" data-hover>Projets</a></li>
+                <li><a href="#contact" class="nav-link" data-hover>Contact</a></li>
             </ul>
-          </article>
-          
-          <article class="timeline-item">
-            <div class="timeline-header">
-              <h3>Responsable projets évennementiels</h3>
-              <span class="timeline-company">Revolution Party</span>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container hero">
+            <div>
+                <span class="tagline">Creative Strategist & Post-Humanist</span>
+                <div class="hero-line"><h1 class="hero-text">Je rends les</h1></div>
+                <div class="hero-line"><h1 class="hero-text">visions <span style="color:var(--accent)">lisibles.</span></h1></div>
+                <div class="hero-line"><h1 class="hero-text">Et désirables.</h1></div>
+                
+                <div class="hero-sub">
+                    <p>Branding, IA, design systémique, soft power culturel. J’opère à la lisière du sensible, du symbole et du système pour des marques qui veulent marquer leur époque.</p>
+                </div>
             </div>
-            <div class="timeline-meta">
-              <span>2009-2017</span>
-              <span>Dakar, Sénégal</span>
+        </section>
+
+        <section id="manifesto" class="container section-padding">
+            <div style="display:grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start;">
+                
+                <div>
+                    <span class="label">Philosophie</span>
+                    <h2 style="font-family: var(--font-head); font-size: 3rem; line-height: 1; margin-top: 1rem; color: var(--text);">
+                        Une réponse<br>au <span class="italic-accent" style="color:var(--accent);">Chaos</span>.
+                    </h2>
+                </div>
+
+                <div class="manifesto-text" style="
+                    font-family: var(--font-head); 
+                    font-size: 1.4rem; 
+                    line-height: 1.6; 
+                    color: var(--text);
+                    text-align: justify;       /* Alignement justifié demandé */
+                    padding-right: 15%;        /* Marge interne pour décoller du bord droit */
+                ">
+                    
+                    <p style="margin-bottom: 2.5rem;">
+                        Je suis un homme façonné par <span class="italic-accent" style="color:var(--accent);">l’intensité</span>. Quand je me concentre, c’est avec une force presque totale : je peux tout éteindre autour de moi pour résoudre un problème, concevoir un objet, bâtir un projet. J’avance comme une <strong>tornade</strong> : par vagues de créativité fulgurantes, par périodes d’élan brut, suivies de silences nécessaires.
+                    </p>
+                    
+                    <p style="margin-bottom: 2.5rem;">
+                        Ce que je poursuis, ce n’est pas la nouveauté : c’est <span class="italic-accent" style="color:var(--accent);">l’évidence</span>. Une beauté qui transcende les époques, comme une carrosserie italienne des années 50, comme le vol d’un oiseau, comme la main d’un sculpteur qui épouse la matière. Je crois en l’élégance utile. En la simplicité qui soigne. La beauté, pour moi, est plus qu’un luxe ; c’est un <strong>besoin vital</strong>. Une réponse au chaos.
+                    </p>
+                    
+                    <p>
+                        Ma force vient de plus loin que moi. Je porte l’héritage de mes ancêtres. Je suis le fruit d’un long récit. Un père, un mari, un passionné ; mais aussi un rêveur hanté par la vérité du monde. Mon regard est celui d’un <span class="italic-accent" style="color:var(--accent);">humaniste romantique</span> : souvent émerveillé, parfois blessé. Mais toujours guidé par le désir de créer du sens, du lien, de la beauté. Pas pour plaire ; mais parce que <strong>ça compte</strong>.
+                    </p>
+                </div>
             </div>
-            <ul>
-              <li>Conception et promotion de 200+ événements (soirées, concerts)</li>
-              <li>Partenariats culturels, logistique, communication visuelle</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
- 
-    <!-- VIDÉOS -->
-    <section id="videos">
-      <div class="container">
-        <h2>Vidéos</h2>
-        <p class="section-intro">
-          Démos, présentations, contenus pédagogiques ou techniques. Mets ici ce qui illustre le mieux ta façon d'expliquer et de travailler.
-        </p>
- 
-        <div class="media-grid">
-          <article class="card">
-            <h3>Titre de la vidéo locale</h3>
-            <video controls preload="metadata">
-              <source src="video.mp4" type="video/mp4" />
-              Votre navigateur ne supporte pas la balise vidéo.
-            </video>
-            <p class="media-desc">
-              Contexte de la vidéo : pour qui, sur quoi, durée, ce que tu y montres.
-            </p>
-          </article>
- 
-          <article class="card">
-            <h3>Titre de la vidéo externe (YouTube, etc.)</h3>
-            <div class="video-frame">
-              <iframe src="https://www.youtube.com/embed/ID_DE_TA_VIDEO" title="Vidéo YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </section>
+
+       <section id="experience" class="container section-padding section-container">
+            <h2 class="section-title">Trajectoire</h2>
+            
+            <div class="timeline-row" data-hover>
+                <div class="t-year">2021 — NOW</div>
+                <div class="t-content">
+                    <span class="t-role">Consultant Stratégie & Création</span>
+                    <h3>Niamato Consulting</h3>
+                    <p class="t-desc">Ingénierie de projets européens : conception de stratégies narratives (storytelling, identité) et direction de contenus. Création visuelle augmentée par IA (Midjourney, DALL·E) et coordination de productions marketing.</p>
+                </div>
             </div>
-            <p class="media-desc">
-              Résumé : ce que la vidéo démontre (compétence technique, pédagogie, vulgarisation…).
-            </p>
-          </article>
+
+            <div class="timeline-row" data-hover>
+                <div class="t-year">2024 — 2025</div>
+                <div class="t-content">
+                    <span class="t-role">Creative & Digital Manager</span>
+                    <h3>Universal View</h3>
+                    <p class="t-desc">Pilotage de campagnes créatives (inclusion, mémoire). Production de visuels, affiches et micro-formats. Développement de concepts artistiques pour ateliers et stratégie social media.</p>
+                </div>
+            </div>
+
+            <div class="timeline-row" data-hover>
+                <div class="t-year">2009 — 2017</div>
+                <div class="t-content">
+                    <span class="t-role">Head of Events (UK)</span>
+                    <h3>Revolution Party</h3>
+                    <p class="t-desc">Conception et promotion de +200 événements à Birmingham. Développement de partenariats culturels, stratégies de communication 360° et coordination logistique.</p>
+                </div>
+            </div>
+        </section>
+
+       <section class="container section-padding" style="border-top: 1px solid var(--line);">
+            
+            <div class="arsenal-layout">
+                
+                <div class="arsenal-col">
+                    <h3 class="arsenal-title">Savoir-Faire</h3>
+                    
+                    <div class="tags-wrapper">
+                        <span class="skill-pill" data-magnet>Stratégie Créative</span>
+                        <span class="skill-pill" data-magnet>Design Narratif IA</span>
+                        <span class="skill-pill" data-magnet>Brand Storytelling</span>
+                        <span class="skill-pill" data-magnet>Direction Artistique</span>
+                        <span class="skill-pill" data-magnet>Prompt Engineering</span>
+                        <span class="skill-pill" data-magnet>Copywriting</span>
+                        <span class="skill-pill" data-magnet>Gestion de Projet</span>
+                        <span class="skill-pill" data-magnet>Social Media Strategy</span>
+                    </div>
+                </div>
+
+                <div class="arsenal-col">
+                    
+                    <div style="margin-bottom: 4rem;">
+                        <h3 class="arsenal-title">Savoir-Être</h3>
+                        <p class="soft-skills-text">
+                            Empathie • Vision Holistique • Curiosité • Leadership • Résilience • Adaptabilité Culturelle • Intelligence Émotionnelle
+                        </p>
+                    </div>
+
+                    <div>
+                        <span class="label">Connexions</span>
+                        <h3 class="arsenal-title">Langues</h3>
+                        
+                        <div class="languages-grid">
+                            <div class="lang-item">
+                                <span class="lang-name">Français / Anglais / Espagnol</span>
+                                <span class="lang-level">Bilingue / Natif</span>
+                            </div>
+                            <div class="lang-item">
+                                <span class="lang-name">Arabe / Grec</span>
+                                <span class="lang-level" style="opacity: 0.6;">Intermédiaire</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <style>
+            /* 1. LAYOUT & ESPACEMENT */
+            .arsenal-layout {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 6rem; /* Espace entre les deux grandes colonnes */
+                align-items: start; /* Important : Aligne tout en HAUT */
+                padding-top: 2rem; /* Juste un petit espace sous la ligne de séparation */
+            }
+
+            .arsenal-title {
+                font-family: var(--font-head);
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+                line-height: 1;
+                color: var(--text);
+            }
+
+            /* 2. STYLE DES TAGS (Le look que tu aimes) */
+            .tags-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem; /* Espace entre les pilules */
+            }
+
+            .skill-pill {
+                display: inline-block;
+                padding: 0.8rem 1.6rem;
+                border: 1px solid rgba(138, 35, 35, 0.3); /* Bordure subtile */
+                border-radius: 50px; /* Forme de pilule parfaite */
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: var(--text);
+                background: transparent;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .skill-pill:hover {
+                border-color: var(--accent);
+                color: var(--bg);
+                background: var(--accent); /* Remplissage au survol */
+                transform: translateY(-3px); /* Petit saut dynamique */
+            }
+
+            /* 3. SOFT SKILLS & LANGUES */
+            .soft-skills-text {
+                font-family: var(--font-head);
+                font-size: 1.2rem;
+                line-height: 1.6;
+                color: var(--text);
+            }
+
+            .languages-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                border-top: 1px solid var(--line);
+                padding-top: 1.5rem;
+            }
+
+            .lang-name { display: block; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 0.5rem; }
+            .lang-level { display: block; font-family: var(--font-head); font-style: italic; color: var(--accent); font-size: 1.1rem; }
+
+            /* RESPONSIVE */
+            @media (max-width: 900px) {
+                .arsenal-layout { grid-template-columns: 1fr; gap: 4rem; }
+                .languages-grid { grid-template-columns: 1fr; }
+            }
+        </style>
+
+        <section id="studio" class="container section-padding section-container">
+            <h2 class="section-title">Le Laboratoire</h2>
+            <div class="work-grid">
+                
+                <a href="#" class="project-card wide" data-hover>
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop" class="p-img" alt="Abstract Flow">
+                    <div class="p-overlay">
+                        <span class="tagline" style="margin-bottom:0; color:var(--accent);">Brand Strategy</span>
+                        <h3 class="p-title">Niamato Identity</h3>
+                    </div>
+                </a>
+
+                <a href="#" class="project-card" data-hover>
+                    <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop" class="p-img" alt="AI Art">
+                    <div class="p-overlay">
+                        <span class="tagline" style="margin-bottom:0; color:var(--accent);">AI Research</span>
+                        <h3 class="p-title">Synthetic Dreams</h3>
+                    </div>
+                </a>
+
+                <a href="#" class="project-card" data-hover>
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop" class="p-img" alt="Neon Tech">
+                    <div class="p-overlay">
+                        <span class="tagline" style="margin-bottom:0; color:var(--accent);">Motion</span>
+                        <h3 class="p-title">Showreel 2025</h3>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact">
+        <a href="mailto:d.dabert89@gmail.com" class="cta-huge" data-hover>LET'S<br>TALK.</a>
+        <div class="footer-links">
+            <a href="#" data-hover>LinkedIn</a>
+            <a href="#" data-hover>CV PDF</a>
+            <a href="#" data-hover>Instagram</a>
         </div>
-      </div>
-    </section>
- 
-    <!-- DOCUMENTS -->
-    <section id="documents">
-      <div class="container">
-        <h2>Documents</h2>
-        <p class="section-intro">
-          Rapports, articles, supports de formation ou livrables clients que tu peux partager publiquement.
-        </p>
- 
-        <div class="docs-grid">
-          <article class="card">
-            <h3>Rapport / Article 1</h3>
-            <p class="doc-meta">Type de document · Année · Contexte (école, pro, perso).</p>
-            <p>
-              Résumé en 2–3 phrases : objectif du document, ton rôle, public cible.
-            </p>
-            <a class="btn" href="doc.pdf" target="_blank" rel="noopener">Ouvrir le document (PDF)</a>
-          </article>
- 
-          <article class="card">
-            <h3>Présentation 1</h3>
-            <p class="doc-meta">Présentation · Année · Public (équipe, clients, étudiants…).</p>
-            <p>
-              Quelques mots sur le sujet et ce que tu y expliques.
-            </p>
-            <a class="btn btn-secondary" href="presentation.pdf" target="_blank" rel="noopener">Voir la présentation</a>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
- 
-  <footer>
-    <div class="container">
-      <p>© <span id="year">2025</span> · Prénom Nom – CV en ligne</p>
-    </div>
-  </footer>
+        <div style="margin-top: 2rem; opacity: 0.5; font-size: 0.8rem;">© 2025 David Dabert</div>
+    </footer>
+
+    <script>
+        // 1. INIT LENIS (Smooth Scroll)
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        })
+
+        function raf(time) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+        requestAnimationFrame(raf)
+
+        // 2. GSAP ANIMATIONS
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Reveal
+        const tl = gsap.timeline();
+        tl.to(".hero-text", { y: "0%", duration: 1.5, ease: "power4.out", stagger: 0.2 })
+          .to(".hero-sub", { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "-=0.5");
+
+        // Scroll Animations
+        gsap.utils.toArray('.timeline-row').forEach(row => {
+            gsap.from(row, {
+                scrollTrigger: { trigger: row, start: "top 85%" },
+                y: 50, opacity: 0, duration: 1, ease: "power3.out"
+            });
+        });
+        
+        gsap.utils.toArray('.project-card').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: { trigger: card, start: "top 90%" },
+                y: 50, opacity: 0, duration: 1, ease: "power3.out"
+            });
+        });
+
+        // 3. CUSTOM CURSOR & ORB
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const orb = document.querySelector('.gradient-orb');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Cursor follows mouse
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Outline with lag
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+
+            // Orb Background follows slowly
+            orb.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 4000, fill: "forwards" });
+        });
+
+        // Hover Effects
+        document.querySelectorAll('[data-hover]').forEach(item => {
+            item.addEventListener('mouseenter', () => document.body.classList.add('hover-active'));
+            item.addEventListener('mouseleave', () => document.body.classList.remove('hover-active'));
+        });
+
+    </script>
 </body>
 </html>
- 
