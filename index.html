@@ -20,7 +20,7 @@
             --bg-card: #111111;
             --text-main: #E0E0E0;
             --text-muted: #888888;
-            --accent: #CCFF00; /* Lime Acide - Coté Tech/Rupture */
+            --accent: #CCFF00; /* Lime Acide */
             --accent-soft: rgba(204, 255, 0, 0.1);
             
             --font-display: 'Syne', sans-serif;
@@ -81,15 +81,17 @@
 
         /* --- 4. TYPOGRAPHY --- */
         h1, h2, h3, .display-font { font-family: var(--font-display); font-weight: 800; }
+        
         .section-title {
             font-size: clamp(3rem, 8vw, 8rem);
             line-height: 0.9;
             letter-spacing: -0.03em;
             text-transform: uppercase;
-            margin-bottom: 4rem;
+            margin-bottom: 2.5rem;
             color: transparent;
             -webkit-text-stroke: 1px rgba(255,255,255,0.3);
             transition: color 0.5s;
+            padding-left: 3rem; 
         }
         .section-container:hover .section-title { color: var(--text-main); -webkit-text-stroke: 0; }
         
@@ -100,8 +102,13 @@
 
         /* --- 5. LAYOUT UTILS --- */
         .container { padding: 0 var(--gutter); max-width: 1600px; margin: 0 auto; }
-        .section-padding { padding: 10rem 0; position: relative; z-index: 2; }
         
+        .section-padding { padding: 4rem 0; position: relative; z-index: 2; } 
+        
+        .shift-content {
+            padding-left: 3rem;
+        }
+
         /* --- 6. HEADER --- */
         header {
             position: fixed; top: 0; left: 0; width: 100%;
@@ -120,23 +127,110 @@
 
         /* --- 7. HERO --- */
         .hero {
-            min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
             padding-top: 10vh;
-        }
-        .hero-line { overflow: hidden; display: block; }
-        .hero-text {
-            font-family: var(--font-display);
-            font-size: clamp(3.5rem, 9vw, 9rem);
-            line-height: 0.9; letter-spacing: -0.04em;
-            transform: translateY(120%);
-        }
-        .hero-sub {
-            margin-top: 3rem; max-width: 500px;
-            font-size: 1.2rem; color: var(--text-muted);
-            opacity: 0; transform: translateY(20px);
+            padding-bottom: 10vh;
         }
 
-        /* --- 8. MANIFESTO (Grid) --- */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-line { overflow: hidden; display: block; }
+        
+        .hero-text {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 6.5rem); 
+            line-height: 0.95; 
+            letter-spacing: -0.04em;
+            transform: translateY(120%);
+        }
+        
+        .hero-sub {
+            margin-top: 2.5rem; 
+            max-width: 450px;
+            font-size: 1.1rem; 
+            color: var(--text-muted);
+            opacity: 0; transform: translateY(20px);
+            line-height: 1.5;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            max-height: 800px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+            filter: grayscale(100%) contrast(1.1);
+            transition: filter 0.5s ease, transform 0.5s ease;
+        }
+        
+        .hero-image-wrapper:hover .hero-img {
+            filter: grayscale(0%) contrast(1);
+            transform: scale(1.02);
+        }
+        
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .hero-image-wrapper { order: -1; height: 50vh; max-height: 400px; margin-bottom: 1rem; } 
+            .hero-text { font-size: 3.5rem; }
+        }
+
+        /* BTN CV STYLE */
+        .btn-cv {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: var(--text-main);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-cv::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0%; height: 100%;
+            background: var(--accent);
+            z-index: -1;
+            transition: width 0.3s ease;
+        }
+        
+        .btn-cv:hover {
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+        .btn-cv:hover::before {
+            width: 100%;
+        }
+
+        /* --- 8. MANIFESTO --- */
         .manifesto-grid {
             display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start;
             border-top: 1px solid rgba(255,255,255,0.1); padding-top: 4rem;
@@ -146,46 +240,241 @@
         }
         .highlight { color: var(--accent); font-style: italic; }
 
-        /* --- 9. TIMELINE (Experience) --- */
+        /* --- 9. TIMELINE --- */
         .timeline-row {
             display: grid; grid-template-columns: 1fr 3fr;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding: 4rem 0; transition: background 0.3s;
+            padding: 3rem 0; 
+            transition: background 0.3s;
         }
         .timeline-row:hover { background: rgba(255,255,255,0.02); }
-        .t-year { font-family: var(--font-display); font-size: 1.5rem; color: var(--text-muted); }
+        .timeline-row:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+        .t-year { 
+            font-family: var(--font-display); 
+            font-size: 1.5rem; 
+            color: var(--text-muted); 
+            padding-left: 3rem; 
+        }
+        
         .t-content h3 { font-size: 2.5rem; margin-bottom: 0.5rem; font-weight: 400; }
         .t-role { color: var(--accent); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 1rem; display: block; }
         .t-desc { max-width: 600px; color: var(--text-muted); line-height: 1.6; }
 
-        /* --- 10. STUDIO / LAB --- */
+        /* --- 10. STUDIO / LABORATOIRE (AJUSTÉ AVEC PADDING DROIT & GAUCHE) --- */
+        .lab-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+            /* MODIF: Décalage gauche ET droite pour que rien ne touche les bords */
+            padding-left: 3rem;
+            padding-right: 3rem; 
+        }
+
+        .filter-menu {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            color: var(--bg);
+            background: var(--text-main);
+            border-color: var(--text-main);
+        }
+
         .work-grid {
-            display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+            min-height: 50vh;
+            /* MODIF: Décalage gauche ET droite pour la grille aussi */
+            padding-left: 3rem;
+            padding-right: 3rem;
         }
+
         .project-card {
-            grid-column: span 6; position: relative;
-            aspect-ratio: 16/10; overflow: hidden;
-            border-radius: 4px; cursor: none;
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: 4px;
+            overflow: hidden;
+            background: var(--bg-card);
+            display: block;
+            text-decoration: none;
         }
-        .project-card.wide { grid-column: span 12; aspect-ratio: 21/9; }
-        
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
         .p-img {
-            width: 100%; height: 100%; object-fit: cover;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.7s var(--easing);
             filter: grayscale(100%);
         }
-        .project-card:hover .p-img { transform: scale(1.05); filter: grayscale(0%); }
-        
-        .p-overlay {
-            position: absolute; inset: 0; background: rgba(0,0,0,0.4);
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem;
-            opacity: 0; transition: opacity 0.4s;
-        }
-        .project-card:hover .p-overlay { opacity: 1; }
-        .p-title { font-size: 2rem; transform: translateY(20px); transition: transform 0.4s; }
-        .project-card:hover .p-title { transform: translateY(0); }
 
-        /* --- 11. FOOTER --- */
+        .project-card:hover .p-img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .p-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover .p-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .p-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            max-width: 90%;
+        }
+
+        .card-tags {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .card-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--bg);
+            background: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .card-tag.border {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        /* Icône Play pour vidéo */
+        .play-icon {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 60px; height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .project-card[data-category="motion"]:hover .play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* --- 11. ARSENAL (SKILLS) --- */
+        .arsenal-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+            padding-top: 0; 
+        }
+        
+        .arsenal-left-padding { padding-left: 3rem; }
+
+        .arsenal-title {
+            font-family: var(--font-head);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            line-height: 1;
+            color: var(--text);
+        }
+
+        .tags-wrapper { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+        .skill-pill {
+            display: inline-block;
+            padding: 0.8rem 1.6rem;
+            border: 1px solid rgba(138, 35, 35, 0.3);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .skill-pill:hover {
+            border-color: var(--accent); color: var(--bg);
+            background: var(--accent); transform: translateY(-3px);
+        }
+
+        .soft-skills-text {
+            font-family: var(--font-head);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--text);
+            text-align: justify;
+            padding-right: 10%;
+        }
+
+        .languages-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            border-top: 1px solid var(--line); padding-top: 1.5rem;
+        }
+        .lang-name { display: block; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .lang-level { display: block; font-family: var(--font-head); font-style: italic; color: var(--accent); font-size: 1.1rem; }
+
+        /* --- 12. FOOTER --- */
         footer {
             min-height: 80vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
@@ -205,10 +494,19 @@
         .footer-links a:hover { border-bottom: 1px solid var(--bg); }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .manifesto-grid, .timeline-row { grid-template-columns: 1fr; gap: 1rem; }
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-image-wrapper { order: -1; max-height: 400px; margin-bottom: 2rem; }
+            .manifesto-grid, .timeline-row, .arsenal-layout, .languages-grid { grid-template-columns: 1fr; gap: 2rem; }
             .project-card, .project-card.wide { grid-column: span 12; aspect-ratio: 4/3; }
             nav { display: none; }
+            .t-year, .shift-content, .section-title, .arsenal-left-padding { padding-left: 0 !important; }
+            
+            /* Reset mobile pour le Lab */
+            .lab-header { flex-direction: column; align-items: flex-start; gap: 1rem; padding-left: 0 !important; padding-right: 0 !important; }
+            .filter-menu { overflow-x: auto; width: 100%; padding-bottom: 10px; }
+            .filter-btn { white-space: nowrap; }
+            .work-grid { grid-template-columns: 1fr; padding-left: 0 !important; padding-right: 0 !important; }
         }
     </style>
 </head>
@@ -234,23 +532,37 @@
 
     <main>
         <section class="container hero">
-            <div>
-                <span class="tagline">Creative Strategist & Post-Humanist</span>
-                <div class="hero-line"><h1 class="hero-text">Je rends les</h1></div>
-                <div class="hero-line"><h1 class="hero-text">visions <span style="color:var(--accent)">lisibles.</span></h1></div>
-                <div class="hero-line"><h1 class="hero-text">Et désirables.</h1></div>
+            <div class="hero-grid">
                 
-                <div class="hero-sub">
-                    <p>Branding, IA, design systémique, soft power culturel. J’opère à la lisière du sensible, du symbole et du système pour des marques qui veulent marquer leur époque.</p>
+                <div class="shift-content">
+                    <span class="tagline">Creative Strategist & Post-Humanist</span>
+                    <div class="hero-line"><h1 class="hero-text">Je rends les</h1></div>
+                    <div class="hero-line"><h1 class="hero-text">visions <span style="color:var(--accent)">lisibles.</span></h1></div>
+                    <div class="hero-line"><h1 class="hero-text">Et désirables.</h1></div>
+                    
+                    <div class="hero-sub">
+                        <p>Branding, IA, design systémique, soft power culturel. J’opère à la lisière du sensible, du symbole et du système pour des marques qui veulent marquer leur époque.</p>
+                        
+                        <a href="cv.pdf" class="btn-cv" download data-hover>
+                            <span>Télécharger CV</span>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 0V11M7 11L2 6M7 11L12 6" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
+
+                <div class="hero-image-wrapper">
+                    <img src="profil.jpg" alt="David Dabert Portrait" class="hero-img">
+                </div>
+
             </div>
         </section>
 
         <section id="manifesto" class="container section-padding">
             <div style="display:grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start;">
                 
-                <div>
-                    <span class="label">Philosophie</span>
+                <div class="shift-content">
                     <h2 style="font-family: var(--font-head); font-size: 3rem; line-height: 1; margin-top: 1rem; color: var(--text);">
                         Une réponse<br>au <span class="italic-accent" style="color:var(--accent);">Chaos</span>.
                     </h2>
@@ -261,18 +573,15 @@
                     font-size: 1.4rem; 
                     line-height: 1.6; 
                     color: var(--text);
-                    text-align: justify;       /* Alignement justifié demandé */
-                    padding-right: 15%;        /* Marge interne pour décoller du bord droit */
+                    text-align: justify;
+                    padding-right: 10%;
                 ">
-                    
                     <p style="margin-bottom: 2.5rem;">
                         Je suis un homme façonné par <span class="italic-accent" style="color:var(--accent);">l’intensité</span>. Quand je me concentre, c’est avec une force presque totale : je peux tout éteindre autour de moi pour résoudre un problème, concevoir un objet, bâtir un projet. J’avance comme une <strong>tornade</strong> : par vagues de créativité fulgurantes, par périodes d’élan brut, suivies de silences nécessaires.
                     </p>
-                    
                     <p style="margin-bottom: 2.5rem;">
                         Ce que je poursuis, ce n’est pas la nouveauté : c’est <span class="italic-accent" style="color:var(--accent);">l’évidence</span>. Une beauté qui transcende les époques, comme une carrosserie italienne des années 50, comme le vol d’un oiseau, comme la main d’un sculpteur qui épouse la matière. Je crois en l’élégance utile. En la simplicité qui soigne. La beauté, pour moi, est plus qu’un luxe ; c’est un <strong>besoin vital</strong>. Une réponse au chaos.
                     </p>
-                    
                     <p>
                         Ma force vient de plus loin que moi. Je porte l’héritage de mes ancêtres. Je suis le fruit d’un long récit. Un père, un mari, un passionné ; mais aussi un rêveur hanté par la vérité du monde. Mon regard est celui d’un <span class="italic-accent" style="color:var(--accent);">humaniste romantique</span> : souvent émerveillé, parfois blessé. Mais toujours guidé par le désir de créer du sens, du lien, de la beauté. Pas pour plaire ; mais parce que <strong>ça compte</strong>.
                     </p>
@@ -311,13 +620,12 @@
             </div>
         </section>
 
-       <section class="container section-padding" style="border-top: 1px solid var(--line);">
+       <section class="container section-padding" style="border-top: 1px solid var(--line); padding-top: 3rem;">
             
             <div class="arsenal-layout">
                 
-                <div class="arsenal-col">
+                <div class="arsenal-col arsenal-left-padding">
                     <h3 class="arsenal-title">Savoir-Faire</h3>
-                    
                     <div class="tags-wrapper">
                         <span class="skill-pill" data-magnet>Stratégie Créative</span>
                         <span class="skill-pill" data-magnet>Design Narratif IA</span>
@@ -331,7 +639,6 @@
                 </div>
 
                 <div class="arsenal-col">
-                    
                     <div style="margin-bottom: 4rem;">
                         <h3 class="arsenal-title">Savoir-Être</h3>
                         <p class="soft-skills-text">
@@ -342,7 +649,6 @@
                     <div>
                         <span class="label">Connexions</span>
                         <h3 class="arsenal-title">Langues</h3>
-                        
                         <div class="languages-grid">
                             <div class="lang-item">
                                 <span class="lang-name">Français / Anglais / Espagnol</span>
@@ -359,105 +665,102 @@
             </div>
         </section>
 
-        <style>
-            /* 1. LAYOUT & ESPACEMENT */
-            .arsenal-layout {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 6rem; /* Espace entre les deux grandes colonnes */
-                align-items: start; /* Important : Aligne tout en HAUT */
-                padding-top: 2rem; /* Juste un petit espace sous la ligne de séparation */
-            }
-
-            .arsenal-title {
-                font-family: var(--font-head);
-                font-size: 2.5rem;
-                margin-bottom: 2rem;
-                line-height: 1;
-                color: var(--text);
-            }
-
-            /* 2. STYLE DES TAGS (Le look que tu aimes) */
-            .tags-wrapper {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1rem; /* Espace entre les pilules */
-            }
-
-            .skill-pill {
-                display: inline-block;
-                padding: 0.8rem 1.6rem;
-                border: 1px solid rgba(138, 35, 35, 0.3); /* Bordure subtile */
-                border-radius: 50px; /* Forme de pilule parfaite */
-                font-size: 0.9rem;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                color: var(--text);
-                background: transparent;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-
-            .skill-pill:hover {
-                border-color: var(--accent);
-                color: var(--bg);
-                background: var(--accent); /* Remplissage au survol */
-                transform: translateY(-3px); /* Petit saut dynamique */
-            }
-
-            /* 3. SOFT SKILLS & LANGUES */
-            .soft-skills-text {
-                font-family: var(--font-head);
-                font-size: 1.2rem;
-                line-height: 1.6;
-                color: var(--text);
-            }
-
-            .languages-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-                border-top: 1px solid var(--line);
-                padding-top: 1.5rem;
-            }
-
-            .lang-name { display: block; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 0.5rem; }
-            .lang-level { display: block; font-family: var(--font-head); font-style: italic; color: var(--accent); font-size: 1.1rem; }
-
-            /* RESPONSIVE */
-            @media (max-width: 900px) {
-                .arsenal-layout { grid-template-columns: 1fr; gap: 4rem; }
-                .languages-grid { grid-template-columns: 1fr; }
-            }
-        </style>
-
         <section id="studio" class="container section-padding section-container">
-            <h2 class="section-title">Le Laboratoire</h2>
-            <div class="work-grid">
+            
+            <div class="lab-header">
+                <h2 class="section-title" style="margin-bottom:0; padding-left:0;">Le Laboratoire</h2>
                 
-                <a href="#" class="project-card wide" data-hover>
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop" class="p-img" alt="Abstract Flow">
-                    <div class="p-overlay">
-                        <span class="tagline" style="margin-bottom:0; color:var(--accent);">Brand Strategy</span>
-                        <h3 class="p-title">Niamato Identity</h3>
+                <div class="filter-menu">
+                    <button class="filter-btn active" data-filter="all" data-magnet>Tous</button>
+                    <button class="filter-btn" data-filter="research" data-magnet>R&D / Essais</button>
+                    <button class="filter-btn" data-filter="design" data-magnet>Design Auto</button>
+                    <button class="filter-btn" data-filter="motion" data-magnet>Motion & Vidéo</button>
+                </div>
+            </div>
+
+            <div class="work-grid" id="lab-grid">
+                
+                <a href="Revolutionizing Electric Motors with Advanced Nanomaterials.pdf" target="_blank" class="project-card lab-item" data-category="research" data-hover>
+                    <div class="card-inner">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop" class="p-img" alt="Nanotech">
+                        <div class="p-overlay">
+                            <div class="card-tags">
+                                <span class="card-tag">Ingénierie</span>
+                                <span class="card-tag border">PDF</span>
+                            </div>
+                            <h3 class="p-title">Nanomaterials & Motors</h3>
+                            <p class="card-desc">L'impact des nanotubes de carbone sur l'efficacité des moteurs électriques.</p>
+                        </div>
                     </div>
                 </a>
 
-                <a href="#" class="project-card" data-hover>
-                    <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop" class="p-img" alt="AI Art">
-                    <div class="p-overlay">
-                        <span class="tagline" style="margin-bottom:0; color:var(--accent);">AI Research</span>
-                        <h3 class="p-title">Synthetic Dreams</h3>
+                <div class="project-card lab-item" data-category="design" data-hover>
+                    <div class="card-inner">
+                        <img src="PHOTO-2024-02-25-11-50-18 5.jpg" class="p-img" alt="Niamato Sketch Top">
+                        <div class="p-overlay">
+                            <div class="card-tags">
+                                <span class="card-tag">Automotive Design</span>
+                            </div>
+                            <h3 class="p-title">Niamato Aero Concept</h3>
+                            <p class="card-desc">Étude aérodynamique et stylistique. Croquis de recherche.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="Hub Motors.pdf" target="_blank" class="project-card lab-item" data-category="research" data-hover>
+                    <div class="card-inner">
+                        <img src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?q=80&w=1000&auto=format&fit=crop" class="p-img" alt="Hub Motor">
+                        <div class="p-overlay">
+                            <div class="card-tags">
+                                <span class="card-tag">Architecture Véhicule</span>
+                                <span class="card-tag border">PDF</span>
+                            </div>
+                            <h3 class="p-title">Hub Motors Revolution</h3>
+                            <p class="card-desc">Redéfinir l'efficacité spatiale et énergétique grâce aux moteurs-roues.</p>
+                        </div>
                     </div>
                 </a>
 
-                <a href="#" class="project-card" data-hover>
-                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop" class="p-img" alt="Neon Tech">
-                    <div class="p-overlay">
-                        <span class="tagline" style="margin-bottom:0; color:var(--accent);">Motion</span>
-                        <h3 class="p-title">Showreel 2025</h3>
+                <div class="project-card lab-item" data-category="motion" data-hover>
+                    <div class="card-inner">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" class="p-img" alt="Motion">
+                        <div class="play-icon">▶</div>
+                        <div class="p-overlay">
+                            <div class="card-tags">
+                                <span class="card-tag">Animation 3D</span>
+                                <span class="card-tag border">MP4</span>
+                            </div>
+                            <h3 class="p-title">Fluid Mechanics</h3>
+                            <p class="card-desc">Simulation de flux et rendu 3D pour interface.</p>
+                        </div>
                     </div>
-                </a>
+                </div>
+
+                <div class="project-card lab-item" data-category="design" data-hover>
+                    <div class="card-inner">
+                        <img src="PHOTO-2024-02-25-11-50-19 5.jpg" class="p-img" alt="Interior Design">
+                        <div class="p-overlay">
+                            <div class="card-tags">
+                                <span class="card-tag">Interior UX</span>
+                            </div>
+                            <h3 class="p-title">Cockpit Experience</h3>
+                            <p class="card-desc">Conception de l'interface conducteur et ergonomie.</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="project-card lab-item" data-category="design" data-hover>
+                    <div class="card-inner">
+                        <img src="PHOTO-2024-02-25-11-50-18.jpg" class="p-img" alt="Front Design">
+                        <div class="p-overlay">
+                            <div class="card-tags">
+                                <span class="card-tag">Identity</span>
+                            </div>
+                            <h3 class="p-title">Face Character</h3>
+                            <p class="card-desc">Recherche d'identité visuelle et signature lumineuse.</p>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </section>
@@ -468,7 +771,7 @@
         <a href="mailto:d.dabert89@gmail.com" class="cta-huge" data-hover>LET'S<br>TALK.</a>
         <div class="footer-links">
             <a href="#" data-hover>LinkedIn</a>
-            <a href="#" data-hover>CV PDF</a>
+            <a href="cv.pdf" download data-hover>CV PDF</a>
             <a href="#" data-hover>Instagram</a>
         </div>
         <div style="margin-top: 2rem; opacity: 0.5; font-size: 0.8rem;">© 2025 David Dabert</div>
@@ -499,7 +802,8 @@
         // Hero Reveal
         const tl = gsap.timeline();
         tl.to(".hero-text", { y: "0%", duration: 1.5, ease: "power4.out", stagger: 0.2 })
-          .to(".hero-sub", { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "-=0.5");
+          .to(".hero-sub", { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "-=0.5")
+          .to(".hero-image-wrapper", { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out" }, "-=1"); // Image animation
 
         // Scroll Animations
         gsap.utils.toArray('.timeline-row').forEach(row => {
@@ -546,6 +850,46 @@
         document.querySelectorAll('[data-hover]').forEach(item => {
             item.addEventListener('mouseenter', () => document.body.classList.add('hover-active'));
             item.addEventListener('mouseleave', () => document.body.classList.remove('hover-active'));
+        });
+
+        // 4. SYSTÈME DE FILTRES "LABORATOIRE"
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const labItems = document.querySelectorAll('.lab-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Gestion de la classe active
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                // Animation des cartes
+                labItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+
+                    if (filterValue === 'all' || filterValue === itemCategory) {
+                        gsap.to(item, { 
+                            display: 'block', 
+                            opacity: 1, 
+                            scale: 1, 
+                            duration: 0.4, 
+                            ease: 'power2.out' 
+                        });
+                    } else {
+                        gsap.to(item, { 
+                            display: 'none', 
+                            opacity: 0, 
+                            scale: 0.9, 
+                            duration: 0.3, 
+                            ease: 'power2.in' 
+                        });
+                    }
+                });
+                
+                // Refresh ScrollTrigger après le filtrage pour éviter les bugs de scroll
+                setTimeout(() => ScrollTrigger.refresh(), 500);
+            });
         });
 
     </script>
