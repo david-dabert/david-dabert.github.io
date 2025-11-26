@@ -261,7 +261,7 @@
         .t-role { color: var(--accent); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 1rem; display: block; }
         .t-desc { max-width: 600px; color: var(--text-muted); line-height: 1.6; }
 
-        /* --- 10. STUDIO / LABORATOIRE (AJUSTÉ AVEC PADDING DROIT & GAUCHE) --- */
+        /* --- 10. STUDIO / LABORATOIRE --- */
         .lab-header {
             display: flex;
             justify-content: space-between;
@@ -269,7 +269,6 @@
             margin-bottom: 3rem;
             flex-wrap: wrap;
             gap: 2rem;
-            /* MODIF: Décalage gauche ET droite pour que rien ne touche les bords */
             padding-left: 3rem;
             padding-right: 3rem; 
         }
@@ -304,7 +303,6 @@
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             gap: 2rem;
             min-height: 50vh;
-            /* MODIF: Décalage gauche ET droite pour la grille aussi */
             padding-left: 3rem;
             padding-right: 3rem;
         }
@@ -474,23 +472,35 @@
         .lang-name { display: block; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 0.5rem; }
         .lang-level { display: block; font-family: var(--font-head); font-style: italic; color: var(--accent); font-size: 1.1rem; }
 
-        /* --- 12. FOOTER --- */
+        /* --- 12. FOOTER (AJUSTÉ) --- */
         footer {
-            min-height: 80vh; display: flex; flex-direction: column;
+            /* MODIFICATION : Hauteur réduite pour l'harmonie */
+            min-height: 45vh; 
+            display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
             background: var(--accent); color: var(--bg);
-            padding: 0 var(--gutter);
+            padding: 4rem var(--gutter);
         }
         .cta-huge {
             font-family: var(--font-display);
-            font-size: clamp(3rem, 10vw, 12rem);
+            /* MODIFICATION : Taille de police réduite */
+            font-size: clamp(2.5rem, 8vw, 8rem);
             line-height: 0.8; letter-spacing: -0.04em;
             margin-bottom: 2rem;
             transition: transform 0.3s;
         }
         .cta-huge:hover { transform: scale(0.98); }
-        .footer-links { display: flex; gap: 2rem; font-size: 1.2rem; text-transform: uppercase; font-weight: 500; }
-        .footer-links a { color: var(--bg); border-bottom: 1px solid transparent; }
+        
+        .footer-links { 
+            display: flex; 
+            gap: 2rem; 
+            /* MODIFICATION : Police réduite pour les liens */
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            font-weight: 600; 
+            letter-spacing: 1px;
+        }
+        .footer-links a { color: var(--bg); border-bottom: 1px solid transparent; text-decoration: none; }
         .footer-links a:hover { border-bottom: 1px solid var(--bg); }
 
         /* Responsive */
@@ -507,6 +517,9 @@
             .filter-menu { overflow-x: auto; width: 100%; padding-bottom: 10px; }
             .filter-btn { white-space: nowrap; }
             .work-grid { grid-template-columns: 1fr; padding-left: 0 !important; padding-right: 0 !important; }
+            
+            /* Ajustement Footer Mobile */
+            footer { min-height: 35vh; }
         }
     </style>
 </head>
@@ -543,7 +556,7 @@
                     <div class="hero-sub">
                         <p>Branding, IA, design systémique, soft power culturel. J’opère à la lisière du sensible, du symbole et du système pour des marques qui veulent marquer leur époque.</p>
                         
-                        <a href="cv.pdf" class="btn-cv" download data-hover>
+                        <a href="assets/creative strategist Cv david.pdf" class="btn-cv" download data-hover>
                             <span>Télécharger CV</span>
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7 0V11M7 11L2 6M7 11L12 6" stroke="currentColor" stroke-width="1.5"/>
@@ -680,7 +693,96 @@
 
             <div class="work-grid" id="lab-grid">
                 
-                <a href="Revolutionizing Electric Motors with Advanced Nanomaterials.pdf" target="_blank" class="project-card lab-item" data-category="research" data-hover>
+                <div class="project-card lab-item" data-category="motion" data-hover>
+                    <div class="card-inner">
+                        <video src="assets/video18.mp4" class="p-img" autoplay loop muted playsinline></video>
+                        <div class="p-overlay">
+                            <div class="card-tags">
+                                <span class="card-tag">Motion</span>
+                                <span class="card-tag border">MP4</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card lab-item" data-category="motion" data-hover>
+                    <div class="card-inner">
+                        <video src="assets/video19.mp4" class="p-img" autoplay loop muted playsinline></video>
+                        <div class="p-overlay">
+                            <div class="card-tags">
+                                <span class="card-tag">R&D Visuelle</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card lab-item" data-category="motion" data-hover>
+                    <div class="card-inner">
+                        <video src="assets/video20.mp4" class="p-img" autoplay loop muted playsinline></video>
+                        <div class="p-overlay">
+                            <div class="card-tags">
+                                <span class="card-tag">Animation</span>
+                            </div>
+                            <h3 class="p-title">Kinetic 20</h3>
+                            <p class="card-desc">Étude de mouvement cinétique.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card lab-item" data-category="motion" data-hover>
+                    <div class="card-inner">
+                        <video src="assets/video34.mp4" class="p-img" autoplay loop muted playsinline></video>
+                        <div class="p-overlay">
+                            <div class="card-tags">
+                                <span class="card-tag">3D Render</span>
+                            </div>
+                            <h3 class="p-title">Module 34</h3>
+                            <p class="card-desc">Construction et déconstruction de formes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card lab-item" data-category="motion" data-hover>
+                    <div class="card-inner">
+                        <video src="assets/video44.mp4" class="p-img" autoplay loop muted playsinline></video>
+                        <div class="p-overlay">
+                            <div class="card-tags">
+                                <span class="card-tag">Loop</span>
+                            </div>
+                            <h3 class="p-title">System 44</h3>
+                            <p class="card-desc">Boucle abstraite générée par code.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card lab-item" data-category="motion" data-hover>
+                    <div class="card-inner">
+                        <video src="assets/video47.mp4" class="p-img" autoplay loop muted playsinline></video>
+                        <div class="p-overlay">
+                            <div class="card-tags">
+                                <span class="card-tag">Concept</span>
+                            </div>
+                            <h3 class="p-title">Vision 47</h3>
+                            <p class="card-desc">Atmosphère numérique et grains.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card lab-item" data-category="motion" data-hover>
+                    <div class="card-inner">
+                        <video src="assets/NC.mp4" class="p-img" autoplay loop muted playsinline></video>
+                        <div class="p-overlay">
+                            <div class="card-tags">
+                                <span class="card-tag">Niamato</span>
+                                <span class="card-tag border">Showreel</span>
+                            </div>
+                            <h3 class="p-title">NC Main Reel</h3>
+                            <p class="card-desc">Identité visuelle en mouvement.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="assets/Revolutionizing Electric Motors with Advanced Nanomaterials.pdf" target="_blank" class="project-card lab-item" data-category="research" data-hover>
                     <div class="card-inner">
                         <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop" class="p-img" alt="Nanotech">
                         <div class="p-overlay">
@@ -688,79 +790,11 @@
                                 <span class="card-tag">Ingénierie</span>
                                 <span class="card-tag border">PDF</span>
                             </div>
-                            <h3 class="p-title">Nanomaterials & Motors</h3>
-                            <p class="card-desc">L'impact des nanotubes de carbone sur l'efficacité des moteurs électriques.</p>
+                            <h3 class="p-title">Nanomaterials</h3>
+                            <p class="card-desc">Recherche appliquée sur les moteurs électriques.</p>
                         </div>
                     </div>
                 </a>
-
-                <div class="project-card lab-item" data-category="design" data-hover>
-                    <div class="card-inner">
-                        <img src="PHOTO-2024-02-25-11-50-18 5.jpg" class="p-img" alt="Niamato Sketch Top">
-                        <div class="p-overlay">
-                            <div class="card-tags">
-                                <span class="card-tag">Automotive Design</span>
-                            </div>
-                            <h3 class="p-title">Niamato Aero Concept</h3>
-                            <p class="card-desc">Étude aérodynamique et stylistique. Croquis de recherche.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <a href="Hub Motors.pdf" target="_blank" class="project-card lab-item" data-category="research" data-hover>
-                    <div class="card-inner">
-                        <img src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?q=80&w=1000&auto=format&fit=crop" class="p-img" alt="Hub Motor">
-                        <div class="p-overlay">
-                            <div class="card-tags">
-                                <span class="card-tag">Architecture Véhicule</span>
-                                <span class="card-tag border">PDF</span>
-                            </div>
-                            <h3 class="p-title">Hub Motors Revolution</h3>
-                            <p class="card-desc">Redéfinir l'efficacité spatiale et énergétique grâce aux moteurs-roues.</p>
-                        </div>
-                    </div>
-                </a>
-
-                <div class="project-card lab-item" data-category="motion" data-hover>
-                    <div class="card-inner">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" class="p-img" alt="Motion">
-                        <div class="play-icon">▶</div>
-                        <div class="p-overlay">
-                            <div class="card-tags">
-                                <span class="card-tag">Animation 3D</span>
-                                <span class="card-tag border">MP4</span>
-                            </div>
-                            <h3 class="p-title">Fluid Mechanics</h3>
-                            <p class="card-desc">Simulation de flux et rendu 3D pour interface.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card lab-item" data-category="design" data-hover>
-                    <div class="card-inner">
-                        <img src="PHOTO-2024-02-25-11-50-19 5.jpg" class="p-img" alt="Interior Design">
-                        <div class="p-overlay">
-                            <div class="card-tags">
-                                <span class="card-tag">Interior UX</span>
-                            </div>
-                            <h3 class="p-title">Cockpit Experience</h3>
-                            <p class="card-desc">Conception de l'interface conducteur et ergonomie.</p>
-                        </div>
-                    </div>
-                </div>
-
-                 <div class="project-card lab-item" data-category="design" data-hover>
-                    <div class="card-inner">
-                        <img src="PHOTO-2024-02-25-11-50-18.jpg" class="p-img" alt="Front Design">
-                        <div class="p-overlay">
-                            <div class="card-tags">
-                                <span class="card-tag">Identity</span>
-                            </div>
-                            <h3 class="p-title">Face Character</h3>
-                            <p class="card-desc">Recherche d'identité visuelle et signature lumineuse.</p>
-                        </div>
-                    </div>
-                </div>
 
             </div>
         </section>
@@ -770,11 +804,10 @@
     <footer id="contact">
         <a href="mailto:d.dabert89@gmail.com" class="cta-huge" data-hover>LET'S<br>TALK.</a>
         <div class="footer-links">
-            <a href="#" data-hover>LinkedIn</a>
-            <a href="cv.pdf" download data-hover>CV PDF</a>
-            <a href="#" data-hover>Instagram</a>
+            <a href="assets/creative strategist Cv david.pdf" download data-hover>CV PDF</a>
+            <a href="https://www.instagram.com/niamato_inc/?hl=fr" target="_blank" data-hover>Instagram</a>
         </div>
-        <div style="margin-top: 2rem; opacity: 0.5; font-size: 0.8rem;">© 2025 David Dabert</div>
+        <div style="margin-top: 2rem; opacity: 0.5; font-size: 0.7rem;">© 2025 David Dabert</div>
     </footer>
 
     <script>
