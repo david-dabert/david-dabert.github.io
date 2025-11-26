@@ -504,75 +504,78 @@
         .footer-links a:hover { border-bottom: 1px solid var(--bg); }
 
         /* Responsive */
-        /* --- RESPONSIVE OPTIMISÉ --- */
+/* --- CORRECTIF MOBILE (Remplace le bloc media query existant) --- */
 @media (max-width: 900px) {
-    /* 1. RESET GLOBAL & CURSEUR */
-    * { cursor: auto !important; } /* Restaure le curseur natif */
-    .cursor-dot, .cursor-outline, .noise-overlay, .gradient-orb { display: none !important; } /* Masque les éléments lourds ou inutiles */
     
-    /* 2. LAYOUT & GRILLES */
-    .container { padding: 0 1.5rem; } /* Marges plus sûres */
-    .hero-grid, .manifesto-grid, .timeline-row, .arsenal-layout, .languages-grid { 
-        grid-template-columns: 1fr; 
-        gap: 2rem; 
-    }
-    
-    /* 3. TYPOGRAPHIE & VISIBILITÉ */
-    .hero-text { font-size: 13vw; } /* Titre responsive */
-    
-    /* Important : Rendre les titres visibles sans hover */
-    .section-title {
-        font-size: 3.5rem;
-        padding-left: 0;
-        color: var(--text-main); /* Couleur pleine directe */
-        -webkit-text-stroke: 0;
-        opacity: 1;
+    /* 1. Empecher le débordement horizontal (La barre noire) */
+    html, body {
+        width: 100vw;
+        overflow-x: hidden !important;
+        position: relative;
     }
 
-    /* Annulation des décalages esthétiques qui cassent le mobile */
-    .shift-content, .t-year, .lab-header, .work-grid, .arsenal-left-padding {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
+    /* 2. Reset des curseurs et effets lourds */
+    * { cursor: auto !important; }
+    .cursor-dot, .cursor-outline, .noise-overlay, .gradient-orb { display: none !important; }
 
-    /* 4. COMPOSANTS SPÉCIFIQUES */
+    /* 3. Sécuriser les conteneurs */
+    .container { padding: 0 1.5rem; width: 100%; box-sizing: border-box; }
     
-    /* Hero Image */
-    .hero-image-wrapper { 
-        order: -1; 
-        height: 40vh; 
-        margin-bottom: 2rem; 
+    /* 4. Gestion des titres qui "cassent" la largeur */
+    .hero-text, .section-title, .cta-huge {
+        font-size: 12vw !important; /* Taille fluide basée sur la largeur d'écran */
+        word-wrap: break-word; /* Coupe les mots si trop longs */
+        white-space: normal; /* Autorise le retour à la ligne */
+        width: 100%;
     }
 
-    /* Timeline */
-    .timeline-row { padding: 2rem 0; gap: 1rem; }
-    .t-year { margin-bottom: 0.5rem; font-size: 1.2rem; }
-    .t-content h3 { font-size: 2rem; }
-
-    /* Laboratoire (Menu scrollable horizontalement) */
-    .lab-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-    .filter-menu { 
-        width: 100%; 
-        overflow-x: auto; 
-        white-space: nowrap; 
-        padding-bottom: 10px;
-        -webkit-overflow-scrolling: touch; /* Scroll fluide iOS */
-        scrollbar-width: none; /* Cache la barre de scroll */
+    /* 5. Réparation du FOOTER (Le fond vert) */
+    footer {
+        width: 100vw !important; /* Force la largeur totale */
+        margin-left: -1.5rem; /* Compense le padding du container parent si besoin, ou ajuster selon ton body */
+        padding: 3rem 1rem;
+        box-sizing: border-box;
+        position: relative;
+        left: 0;
     }
-    .filter-menu::-webkit-scrollbar { display: none; }
+
+    /* 6. Réparation du "LET'S TALK" (Le lien bleu) */
+    .cta-huge {
+        color: var(--bg) !important; /* Force le noir (ou ta couleur background) */
+        text-decoration: none !important; /* Enlève le soulignement bleu */
+        border-bottom: none !important;
+        display: block;
+        line-height: 0.9;
+        margin-bottom: 1.5rem;
+    }
     
-    /* Cartes Projets : Toujours afficher le texte sur mobile (car pas de hover) */
-    .project-card { aspect-ratio: 16/9; }
-    .project-card .p-overlay {
-        opacity: 1;
-        transform: translateY(0);
-        background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
+    /* Pour être sûr que le lien ne devienne jamais bleu au clic */
+    .cta-huge:visited, .cta-huge:active, .cta-huge:hover {
+        color: var(--bg) !important;
     }
-    .play-icon { opacity: 1; transform: translate(-50%, -50%) scale(1); width: 50px; height: 50px; }
 
-    /* Footer */
-    .cta-huge { font-size: 18vw; }
-    nav { display: none; } /* Cache le menu desktop */
+    /* 7. Ajustement des cartes "Design Auto" */
+    .project-card {
+        grid-column: span 1;
+        width: 100%;
+        margin-bottom: 2rem; /* Espace entre les images */
+    }
+    
+    /* Rendre le texte lisible sur l'image sans hover */
+    .p-overlay {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 80%);
+    }
+    
+    /* Style du badge jaune sur mobile */
+    .card-tags {
+        top: 1rem; left: 1rem;
+    }
+    .card-tag {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.8rem;
+    }
 }
     </style>
 </head>
