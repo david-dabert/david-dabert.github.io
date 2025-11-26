@@ -504,23 +504,76 @@
         .footer-links a:hover { border-bottom: 1px solid var(--bg); }
 
         /* Responsive */
-        @media (max-width: 900px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .hero-image-wrapper { order: -1; max-height: 400px; margin-bottom: 2rem; }
-            .manifesto-grid, .timeline-row, .arsenal-layout, .languages-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .project-card, .project-card.wide { grid-column: span 12; aspect-ratio: 4/3; }
-            nav { display: none; }
-            .t-year, .shift-content, .section-title, .arsenal-left-padding { padding-left: 0 !important; }
-            
-            /* Reset mobile pour le Lab */
-            .lab-header { flex-direction: column; align-items: flex-start; gap: 1rem; padding-left: 0 !important; padding-right: 0 !important; }
-            .filter-menu { overflow-x: auto; width: 100%; padding-bottom: 10px; }
-            .filter-btn { white-space: nowrap; }
-            .work-grid { grid-template-columns: 1fr; padding-left: 0 !important; padding-right: 0 !important; }
-            
-            /* Ajustement Footer Mobile */
-            footer { min-height: 35vh; }
-        }
+        /* --- RESPONSIVE OPTIMISÉ --- */
+@media (max-width: 900px) {
+    /* 1. RESET GLOBAL & CURSEUR */
+    * { cursor: auto !important; } /* Restaure le curseur natif */
+    .cursor-dot, .cursor-outline, .noise-overlay, .gradient-orb { display: none !important; } /* Masque les éléments lourds ou inutiles */
+    
+    /* 2. LAYOUT & GRILLES */
+    .container { padding: 0 1.5rem; } /* Marges plus sûres */
+    .hero-grid, .manifesto-grid, .timeline-row, .arsenal-layout, .languages-grid { 
+        grid-template-columns: 1fr; 
+        gap: 2rem; 
+    }
+    
+    /* 3. TYPOGRAPHIE & VISIBILITÉ */
+    .hero-text { font-size: 13vw; } /* Titre responsive */
+    
+    /* Important : Rendre les titres visibles sans hover */
+    .section-title {
+        font-size: 3.5rem;
+        padding-left: 0;
+        color: var(--text-main); /* Couleur pleine directe */
+        -webkit-text-stroke: 0;
+        opacity: 1;
+    }
+
+    /* Annulation des décalages esthétiques qui cassent le mobile */
+    .shift-content, .t-year, .lab-header, .work-grid, .arsenal-left-padding {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* 4. COMPOSANTS SPÉCIFIQUES */
+    
+    /* Hero Image */
+    .hero-image-wrapper { 
+        order: -1; 
+        height: 40vh; 
+        margin-bottom: 2rem; 
+    }
+
+    /* Timeline */
+    .timeline-row { padding: 2rem 0; gap: 1rem; }
+    .t-year { margin-bottom: 0.5rem; font-size: 1.2rem; }
+    .t-content h3 { font-size: 2rem; }
+
+    /* Laboratoire (Menu scrollable horizontalement) */
+    .lab-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .filter-menu { 
+        width: 100%; 
+        overflow-x: auto; 
+        white-space: nowrap; 
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch; /* Scroll fluide iOS */
+        scrollbar-width: none; /* Cache la barre de scroll */
+    }
+    .filter-menu::-webkit-scrollbar { display: none; }
+    
+    /* Cartes Projets : Toujours afficher le texte sur mobile (car pas de hover) */
+    .project-card { aspect-ratio: 16/9; }
+    .project-card .p-overlay {
+        opacity: 1;
+        transform: translateY(0);
+        background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
+    }
+    .play-icon { opacity: 1; transform: translate(-50%, -50%) scale(1); width: 50px; height: 50px; }
+
+    /* Footer */
+    .cta-huge { font-size: 18vw; }
+    nav { display: none; } /* Cache le menu desktop */
+}
     </style>
 </head>
 <body>
@@ -956,31 +1009,40 @@
             });
         });
 
-        // 3. CUSTOM CURSOR & ORB
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-        const orb = document.querySelector('.gradient-orb');
+        // 3. CUSTOM CURSOR & ORB (Seulement si l'appareil a une souris)
+if (window.matchMedia("(pointer: fine)").matches) {
+    
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
+    const orb = document.querySelector('.gradient-orb');
 
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
+    window.addEventListener('mousemove', (e) => {
+        const posX = e.clientX;
+        const posY = e.clientY;
 
-            // Cursor follows mouse
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
+        // Cursor follows mouse
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
 
-            // Outline with lag
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
+        // Outline with lag
+        cursorOutline.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+        }, { duration: 500, fill: "forwards" });
 
-            // Orb Background follows slowly
-            orb.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 4000, fill: "forwards" });
-        });
+        // Orb Background follows slowly
+        orb.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+        }, { duration: 4000, fill: "forwards" });
+    });
+
+    // Hover Effects
+    document.querySelectorAll('[data-hover]').forEach(item => {
+        item.addEventListener('mouseenter', () => document.body.classList.add('hover-active'));
+        item.addEventListener('mouseleave', () => document.body.classList.remove('hover-active'));
+    });
+}
 
         // Hover Effects
         document.querySelectorAll('[data-hover]').forEach(item => {
