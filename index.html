@@ -109,6 +109,20 @@
             padding-left: 3rem;
         }
 
+        /* --- LANG SWITCHER --- */
+        .lang-switcher {
+            display: flex; gap: 0.4rem; align-items: center;
+            margin-left: 2rem;
+        }
+        .lang-btn {
+            background: transparent; border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.5); padding: 0.3rem 0.6rem; border-radius: 4px;
+            font-family: var(--font-body); font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease;
+        }
+        .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .lang-btn.active { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 500; }
+
         /* --- 6. HEADER --- */
         header {
             position: fixed; top: 0; left: 0; width: 100%;
@@ -591,11 +605,16 @@
         <a href="#" class="logo" data-hover>DD.</a>
         <nav>
             <ul>
-                <li><a href="#manifesto" class="nav-link" data-hover>Vision</a></li>
-                <li><a href="#experience" class="nav-link" data-hover>Trajectoire</a></li>
-                <li><a href="#studio" class="nav-link" data-hover>Projets</a></li>
+                <li><a href="#manifesto" class="nav-link" data-hover data-i18n="nav.vision">Vision</a></li>
+                <li><a href="#experience" class="nav-link" data-hover data-i18n="nav.trajectory">Trajectoire</a></li>
+                <li><a href="#studio" class="nav-link" data-hover data-i18n="nav.projects">Projets</a></li>
                 <li><a href="#contact" class="nav-link" data-hover>Contact</a></li>
             </ul>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="fr" data-hover>FR</button>
+                <button class="lang-btn" data-lang="en" data-hover>EN</button>
+                <button class="lang-btn" data-lang="es" data-hover>ES</button>
+            </div>
         </nav>
     </header>
 
@@ -604,16 +623,16 @@
             <div class="hero-grid">
                 
                 <div class="shift-content">
-                    <span class="tagline">Creative Strategist & Post-Humanist</span>
-                    <div class="hero-line"><h1 class="hero-text">Je rends les</h1></div>
-                    <div class="hero-line"><h1 class="hero-text">visions <span style="color:var(--accent)">lisibles.</span></h1></div>
-                    <div class="hero-line"><h1 class="hero-text">Et désirables.</h1></div>
-                    
+                    <span class="tagline" data-i18n="hero.tagline">Creative Strategist & Post-Humanist</span>
+                    <div class="hero-line"><h1 class="hero-text" data-i18n-html="hero.line1">Je rends les</h1></div>
+                    <div class="hero-line"><h1 class="hero-text" data-i18n-html="hero.line2">visions <span style="color:var(--accent)">lisibles.</span></h1></div>
+                    <div class="hero-line"><h1 class="hero-text" data-i18n-html="hero.line3">Et désirables.</h1></div>
+
                     <div class="hero-sub">
-                        <p>Branding, IA, design systémique, soft power culturel. J’opère à la lisière du sensible, du symbole et du système pour des marques qui veulent marquer leur époque.</p>
-                        
+                        <p data-i18n="hero.sub">Branding, IA, design systémique, soft power culturel. J’opère à la lisière du sensible, du symbole et du système pour des marques qui veulent marquer leur époque.</p>
+
                         <a href="assets/creative strategist Cv david.pdf" class="btn-cv" download data-hover>
-                            <span>Télécharger CV</span>
+                            <span data-i18n="hero.cv">Télécharger CV</span>
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7 0V11M7 11L2 6M7 11L12 6" stroke="currentColor" stroke-width="1.5"/>
                             </svg>
@@ -632,26 +651,26 @@
             <div style="display:grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start;">
                 
                 <div class="shift-content">
-                    <h2 style="font-family: var(--font-head); font-size: 3rem; line-height: 1; margin-top: 1rem; color: var(--text);">
+                    <h2 data-i18n-html="manifesto.title" style="font-family: var(--font-head); font-size: 3rem; line-height: 1; margin-top: 1rem; color: var(--text);">
                         Une réponse<br>au <span class="italic-accent" style="color:var(--accent);">Chaos</span>.
                     </h2>
                 </div>
 
                 <div class="manifesto-text" style="
-                    font-family: var(--font-head); 
-                    font-size: 1.4rem; 
-                    line-height: 1.6; 
+                    font-family: var(--font-head);
+                    font-size: 1.4rem;
+                    line-height: 1.6;
                     color: var(--text);
                     text-align: justify;
                     padding-right: 10%;
                 ">
-                    <p style="margin-bottom: 2.5rem;">
+                    <p data-i18n-html="manifesto.p1" style="margin-bottom: 2.5rem;">
                         Je suis un homme façonné par <span class="italic-accent" style="color:var(--accent);">l’intensité</span>. Quand je me concentre, c’est avec une force presque totale : je peux tout éteindre autour de moi pour résoudre un problème, concevoir un objet, bâtir un projet. J’avance comme une <strong>tornade</strong> : par vagues de créativité fulgurantes, par périodes d’élan brut, suivies de silences nécessaires.
                     </p>
-                    <p style="margin-bottom: 2.5rem;">
+                    <p data-i18n-html="manifesto.p2" style="margin-bottom: 2.5rem;">
                         Ce que je poursuis, ce n’est pas la nouveauté : c’est <span class="italic-accent" style="color:var(--accent);">l’évidence</span>. Une beauté qui transcende les époques, comme une carrosserie italienne des années 50, comme le vol d’un oiseau, comme la main d’un sculpteur qui épouse la matière. Je crois en l’élégance utile. En la simplicité qui soigne. La beauté, pour moi, est plus qu’un luxe ; c’est un <strong>besoin vital</strong>. Une réponse au chaos.
                     </p>
-                    <p>
+                    <p data-i18n-html="manifesto.p3">
                         Ma force vient de plus loin que moi. Je porte l’héritage de mes ancêtres. Je suis le fruit d’un long récit. Un père, un mari, un passionné ; mais aussi un rêveur hanté par la vérité du monde. Mon regard est celui d’un <span class="italic-accent" style="color:var(--accent);">humaniste romantique</span> : souvent émerveillé, parfois blessé. Mais toujours guidé par le désir de créer du sens, du lien, de la beauté. Pas pour plaire ; mais parce que <strong>ça compte</strong>.
                     </p>
                 </div>
@@ -659,59 +678,59 @@
         </section>
 
        <section id="experience" class="container section-padding section-container">
-            <h2 class="section-title">Trajectoire</h2>
-            
+            <h2 class="section-title" data-i18n="section.trajectory">Trajectoire</h2>
+
             <div class="timeline-row" data-hover>
-                <div class="t-year">2021 — NOW</div>
+                <div class="t-year" data-i18n="xp1.year">2021 — PRÉSENT</div>
                 <div class="t-content">
-                    <span class="t-role">Consultant Stratégie & Création</span>
+                    <span class="t-role" data-i18n="xp1.role">Consultant Stratégie & Création</span>
                     <h3>Niamato Consulting</h3>
-                    <p class="t-desc">Ingénierie de projets européens : conception de stratégies narratives (storytelling, identité) et direction de contenus. Création visuelle augmentée par IA (Midjourney, DALL·E) et coordination de productions marketing.</p>
+                    <p class="t-desc" data-i18n="xp1.desc">Ingénierie de projets européens : conception de stratégies narratives (storytelling, identité) et direction de contenus. Création visuelle augmentée par IA (Midjourney, DALL·E) et coordination de productions marketing.</p>
                 </div>
             </div>
 
             <div class="timeline-row" data-hover>
                 <div class="t-year">2024 — 2025</div>
                 <div class="t-content">
-                    <span class="t-role">Creative & Digital Manager</span>
+                    <span class="t-role" data-i18n="xp2.role">Creative & Digital Manager</span>
                     <h3>Universal View</h3>
-                    <p class="t-desc">Pilotage de campagnes créatives (inclusion, mémoire). Production de visuels, affiches et micro-formats. Développement de concepts artistiques pour ateliers et stratégie social media.</p>
+                    <p class="t-desc" data-i18n="xp2.desc">Pilotage de campagnes créatives (inclusion, mémoire). Production de visuels, affiches et micro-formats. Développement de concepts artistiques pour ateliers et stratégie social media.</p>
                 </div>
             </div>
 
             <div class="timeline-row" data-hover>
                 <div class="t-year">2020 — 2024</div>
                 <div class="t-content">
-                    <span class="t-role">Co-fondateur & Directeur Design Génératif</span>
-                    <h3>Startup Véhicule Électrique (stealth)</h3>
-                    <p class="t-desc">Création et direction d'un collectif de design génératif IA issu d'une communauté Discord autour de DALL-E, atteignant 700 000 abonnés Instagram via l'exploration de techniques de rendu biomimétiques. Collaboration avec Frank Stephenson, Pininfarina et Italdesign sur des concepts de véhicules électriques testés (aérodynamique, systèmes de gestion de batteries). Co-fondation d'une startup de production artisanale ; levée de fonds de 19 M€ avant suspension du projet en 2024.</p>
+                    <span class="t-role" data-i18n="xp3.role">Co-fondateur & Directeur Design Génératif</span>
+                    <h3 data-i18n="xp3.company">Startup Véhicule Électrique (stealth)</h3>
+                    <p class="t-desc" data-i18n="xp3.desc">Création et direction d'un collectif de design génératif IA issu d'une communauté Discord autour de DALL-E, atteignant 700 000 abonnés Instagram via l'exploration de techniques de rendu biomimétiques. Collaboration avec Frank Stephenson, Pininfarina et Italdesign sur des concepts de véhicules électriques testés (aérodynamique, systèmes de gestion de batteries). Co-fondation d'une startup de production artisanale ; levée de fonds de 19 M€ avant suspension du projet en 2024.</p>
                 </div>
             </div>
 
             <div class="timeline-row" data-hover>
                 <div class="t-year">2018 — 2019</div>
                 <div class="t-content">
-                    <span class="t-role">Directeur de Programme & Communications</span>
-                    <h3>Ecozone — Dakar, Sénégal</h3>
-                    <p class="t-desc">Reprise d'un programme en échec communicationnel : reconstruction de la confiance des parties prenantes entre bailleurs européens, partenaires locaux et organisation fondatrice. Obtention d'un partenariat avec Extreme E, série de course électrique tout-terrain opérant sous l'égide de la FIA, pour l'étape sénégalaise du championnat. Le programme reste opérationnel aujourd'hui.</p>
+                    <span class="t-role" data-i18n="xp4.role">Directeur de Programme & Communications</span>
+                    <h3 data-i18n="xp4.company">Ecozone — Dakar, Sénégal</h3>
+                    <p class="t-desc" data-i18n="xp4.desc">Reprise d'un programme en échec communicationnel : reconstruction de la confiance des parties prenantes entre bailleurs européens, partenaires locaux et organisation fondatrice. Obtention d'un partenariat avec Extreme E, série de course électrique tout-terrain opérant sous l'égide de la FIA, pour l'étape sénégalaise du championnat. Le programme reste opérationnel aujourd'hui.</p>
                 </div>
             </div>
 
             <div class="timeline-row" data-hover>
                 <div class="t-year">2010 — 2025</div>
                 <div class="t-content">
-                    <span class="t-role">Coordinateur & Communications Institutionnelles</span>
-                    <h3>Multiples organisations — France, Royaume-Uni, Afrique de l'Ouest</h3>
-                    <p class="t-desc">Production de l'ensemble des communications pour plus de cinquante programmes européens : rapports institutionnels pour les bailleurs UE, notes de briefing pour les organisations partenaires, newsletters, notes de politique et documents de positionnement stratégique pour des organes de gouvernance soumis à des contraintes de confidentialité et de conformité.</p>
+                    <span class="t-role" data-i18n="xp5.role">Coordinateur & Communications Institutionnelles</span>
+                    <h3 data-i18n="xp5.company">Multiples organisations — France, Royaume-Uni, Afrique de l'Ouest</h3>
+                    <p class="t-desc" data-i18n="xp5.desc">Production de l'ensemble des communications pour plus de cinquante programmes européens : rapports institutionnels pour les bailleurs UE, notes de briefing pour les organisations partenaires, newsletters, notes de politique et documents de positionnement stratégique pour des organes de gouvernance soumis à des contraintes de confidentialité et de conformité.</p>
                 </div>
             </div>
 
             <div class="timeline-row" data-hover>
                 <div class="t-year">2009 — 2017</div>
                 <div class="t-content">
-                    <span class="t-role">Head of Events (UK)</span>
+                    <span class="t-role" data-i18n="xp6.role">Directeur Événementiel (UK)</span>
                     <h3>Revolution Party</h3>
-                    <p class="t-desc">Conception et promotion de +200 événements à Birmingham. Développement de partenariats culturels, stratégies de communication 360° et coordination logistique.</p>
+                    <p class="t-desc" data-i18n="xp6.desc">Conception et promotion de +200 événements à Birmingham. Développement de partenariats culturels, stratégies de communication 360° et coordination logistique.</p>
                 </div>
             </div>
         </section>
@@ -721,30 +740,30 @@
             <div class="arsenal-layout">
                 
                 <div class="arsenal-col arsenal-left-padding">
-                    <h3 class="arsenal-title">Savoir-Faire</h3>
+                    <h3 class="arsenal-title" data-i18n="skills.hard">Savoir-Faire</h3>
                     <div class="tags-wrapper">
-                        <span class="skill-pill" data-magnet>Stratégie Créative</span>
-                        <span class="skill-pill" data-magnet>Design Narratif IA</span>
+                        <span class="skill-pill" data-magnet data-i18n="skill.1">Stratégie Créative</span>
+                        <span class="skill-pill" data-magnet data-i18n="skill.2">Design Narratif IA</span>
                         <span class="skill-pill" data-magnet>Brand Storytelling</span>
-                        <span class="skill-pill" data-magnet>Direction Artistique</span>
+                        <span class="skill-pill" data-magnet data-i18n="skill.4">Direction Artistique</span>
                         <span class="skill-pill" data-magnet>Prompt Engineering</span>
                         <span class="skill-pill" data-magnet>Copywriting</span>
-                        <span class="skill-pill" data-magnet>Gestion de Projet</span>
+                        <span class="skill-pill" data-magnet data-i18n="skill.7">Gestion de Projet</span>
                         <span class="skill-pill" data-magnet>Social Media Strategy</span>
                     </div>
                 </div>
 
                 <div class="arsenal-col">
                     <div style="margin-bottom: 4rem;">
-                        <h3 class="arsenal-title">Savoir-Être</h3>
-                        <p class="soft-skills-text">
+                        <h3 class="arsenal-title" data-i18n="skills.soft">Savoir-Être</h3>
+                        <p class="soft-skills-text" data-i18n="skills.softlist">
                             Empathie • Vision Holistique • Curiosité • Leadership • Résilience • Adaptabilité Culturelle • Intelligence Émotionnelle
                         </p>
                     </div>
 
                     <div>
-                        <span class="label">Connexions</span>
-                        <h3 class="arsenal-title">Langues</h3>
+                        <span class="label" data-i18n="skills.connections">Connexions</span>
+                        <h3 class="arsenal-title" data-i18n="skills.languages">Langues</h3>
                         <div class="languages-grid">
                             <div class="lang-item">
                                 <span class="lang-name">Français / Anglais / Espagnol</span>
@@ -764,13 +783,13 @@
         <section id="studio" class="container section-padding section-container">
             
             <div class="lab-header">
-                <h2 class="section-title" style="margin-bottom:0; padding-left:0;">Le Laboratoire</h2>
-                
+                <h2 class="section-title" data-i18n="section.lab" style="margin-bottom:0; padding-left:0;">Le Laboratoire</h2>
+
                 <div class="filter-menu">
-                    <button class="filter-btn active" data-filter="all" data-magnet>Tous</button>
-                    <button class="filter-btn" data-filter="research" data-magnet>R&D / Essais</button>
+                    <button class="filter-btn active" data-filter="all" data-magnet data-i18n="filter.all">Tous</button>
+                    <button class="filter-btn" data-filter="research" data-magnet data-i18n="filter.research">R&D / Essais</button>
                     <button class="filter-btn" data-filter="design" data-magnet>Design Auto</button>
-                    <button class="filter-btn" data-filter="motion" data-magnet>Motion & Vidéo</button>
+                    <button class="filter-btn" data-filter="motion" data-magnet data-i18n="filter.motion">Motion & Vidéo</button>
                 </div>
             </div>
 
@@ -1117,6 +1136,178 @@ if (window.matchMedia("(pointer: fine)").matches) {
                 
                 // Refresh ScrollTrigger après le filtrage pour éviter les bugs de scroll
                 setTimeout(() => ScrollTrigger.refresh(), 500);
+            });
+        });
+
+        // 5. TRANSLATION SYSTEM (FR / EN / ES)
+        const translations = {
+            fr: {
+                "nav.vision": "Vision",
+                "nav.trajectory": "Trajectoire",
+                "nav.projects": "Projets",
+                "hero.tagline": "Creative Strategist & Post-Humanist",
+                "hero.line1": "Je rends les",
+                "hero.line2": 'visions <span style="color:var(--accent)">lisibles.</span>',
+                "hero.line3": "Et désirables.",
+                "hero.sub": "Branding, IA, design systémique, soft power culturel. J'opère à la lisière du sensible, du symbole et du système pour des marques qui veulent marquer leur époque.",
+                "hero.cv": "Télécharger CV",
+                "manifesto.title": 'Une réponse<br>au <span class="italic-accent" style="color:var(--accent);">Chaos</span>.',
+                "manifesto.p1": 'Je suis un homme façonné par <span class="italic-accent" style="color:var(--accent);">l\'intensité</span>. Quand je me concentre, c\'est avec une force presque totale : je peux tout éteindre autour de moi pour résoudre un problème, concevoir un objet, bâtir un projet. J\'avance comme une <strong>tornade</strong> : par vagues de créativité fulgurantes, par périodes d\'élan brut, suivies de silences nécessaires.',
+                "manifesto.p2": 'Ce que je poursuis, ce n\'est pas la nouveauté : c\'est <span class="italic-accent" style="color:var(--accent);">l\'évidence</span>. Une beauté qui transcende les époques, comme une carrosserie italienne des années 50, comme le vol d\'un oiseau, comme la main d\'un sculpteur qui épouse la matière. Je crois en l\'élégance utile. En la simplicité qui soigne. La beauté, pour moi, est plus qu\'un luxe ; c\'est un <strong>besoin vital</strong>. Une réponse au chaos.',
+                "manifesto.p3": 'Ma force vient de plus loin que moi. Je porte l\'héritage de mes ancêtres. Je suis le fruit d\'un long récit. Un père, un mari, un passionné ; mais aussi un rêveur hanté par la vérité du monde. Mon regard est celui d\'un <span class="italic-accent" style="color:var(--accent);">humaniste romantique</span> : souvent émerveillé, parfois blessé. Mais toujours guidé par le désir de créer du sens, du lien, de la beauté. Pas pour plaire ; mais parce que <strong>ça compte</strong>.',
+                "section.trajectory": "Trajectoire",
+                "xp1.year": "2021 — PRÉSENT",
+                "xp1.role": "Consultant Stratégie & Création",
+                "xp1.desc": "Ingénierie de projets européens : conception de stratégies narratives (storytelling, identité) et direction de contenus. Création visuelle augmentée par IA (Midjourney, DALL·E) et coordination de productions marketing.",
+                "xp2.role": "Directeur Créatif & Digital",
+                "xp2.desc": "Pilotage de campagnes créatives (inclusion, mémoire). Production de visuels, affiches et micro-formats. Développement de concepts artistiques pour ateliers et stratégie social media.",
+                "xp3.role": "Co-fondateur & Directeur Design Génératif",
+                "xp3.company": "Startup Véhicule Électrique (stealth)",
+                "xp3.desc": "Création et direction d'un collectif de design génératif IA issu d'une communauté Discord autour de DALL-E, atteignant 700 000 abonnés Instagram via l'exploration de techniques de rendu biomimétiques. Collaboration avec Frank Stephenson, Pininfarina et Italdesign sur des concepts de véhicules électriques testés (aérodynamique, systèmes de gestion de batteries). Co-fondation d'une startup de production artisanale ; levée de fonds de 19 M€ avant suspension du projet en 2024.",
+                "xp4.role": "Directeur de Programme & Communications",
+                "xp4.company": "Ecozone — Dakar, Sénégal",
+                "xp4.desc": "Reprise d'un programme en échec communicationnel : reconstruction de la confiance des parties prenantes entre bailleurs européens, partenaires locaux et organisation fondatrice. Obtention d'un partenariat avec Extreme E, série de course électrique tout-terrain opérant sous l'égide de la FIA, pour l'étape sénégalaise du championnat. Le programme reste opérationnel aujourd'hui.",
+                "xp5.role": "Coordinateur & Communications Institutionnelles",
+                "xp5.company": "Multiples organisations — France, Royaume-Uni, Afrique de l'Ouest",
+                "xp5.desc": "Production de l'ensemble des communications pour plus de cinquante programmes européens : rapports institutionnels pour les bailleurs UE, notes de briefing pour les organisations partenaires, newsletters, notes de politique et documents de positionnement stratégique pour des organes de gouvernance soumis à des contraintes de confidentialité et de conformité.",
+                "xp6.role": "Directeur Événementiel (UK)",
+                "xp6.desc": "Conception et promotion de +200 événements à Birmingham. Développement de partenariats culturels, stratégies de communication 360° et coordination logistique.",
+                "skills.hard": "Savoir-Faire",
+                "skill.1": "Stratégie Créative",
+                "skill.2": "Design Narratif IA",
+                "skill.4": "Direction Artistique",
+                "skill.7": "Gestion de Projet",
+                "skills.soft": "Savoir-Être",
+                "skills.softlist": "Empathie • Vision Holistique • Curiosité • Leadership • Résilience • Adaptabilité Culturelle • Intelligence Émotionnelle",
+                "skills.connections": "Connexions",
+                "skills.languages": "Langues",
+                "section.lab": "Le Laboratoire",
+                "filter.all": "Tous",
+                "filter.research": "R&D / Essais",
+                "filter.motion": "Motion & Vidéo"
+            },
+            en: {
+                "nav.vision": "Vision",
+                "nav.trajectory": "Journey",
+                "nav.projects": "Projects",
+                "hero.tagline": "Creative Strategist & Post-Humanist",
+                "hero.line1": "I make",
+                "hero.line2": 'visions <span style="color:var(--accent)">legible.</span>',
+                "hero.line3": "And desirable.",
+                "hero.sub": "Branding, AI, systemic design, cultural soft power. I operate at the frontier of the sensible, the symbolic, and the systemic — for brands that want to define their era.",
+                "hero.cv": "Download CV",
+                "manifesto.title": 'A response<br>to <span class="italic-accent" style="color:var(--accent);">Chaos</span>.',
+                "manifesto.p1": 'I am a man shaped by <span class="italic-accent" style="color:var(--accent);">intensity</span>. When I focus, it is with near-total force: I can shut everything out to solve a problem, design an object, build a project. I move like a <strong>tornado</strong>: in waves of blazing creativity, periods of raw momentum, followed by necessary silences.',
+                "manifesto.p2": 'What I pursue is not novelty: it is <span class="italic-accent" style="color:var(--accent);">self-evidence</span>. A beauty that transcends eras — like an Italian coachwork from the 1950s, like the flight of a bird, like a sculptor\'s hand embracing the material. I believe in useful elegance. In simplicity that heals. Beauty, for me, is more than a luxury; it is a <strong>vital need</strong>. A response to chaos.',
+                "manifesto.p3": 'My strength comes from beyond myself. I carry the heritage of my ancestors. I am the fruit of a long story. A father, a husband, a passionate soul — but also a dreamer haunted by the truth of the world. My gaze is that of a <span class="italic-accent" style="color:var(--accent);">romantic humanist</span>: often in awe, sometimes wounded. But always guided by the desire to create meaning, connection, beauty. Not to please — but because <strong>it matters</strong>.',
+                "section.trajectory": "Journey",
+                "xp1.year": "2021 — PRESENT",
+                "xp1.role": "Strategy & Creative Consultant",
+                "xp1.desc": "European project engineering: narrative strategy design (storytelling, identity) and content direction. AI-augmented visual creation (Midjourney, DALL·E) and marketing production coordination.",
+                "xp2.role": "Creative & Digital Manager",
+                "xp2.desc": "Creative campaign management (inclusion, remembrance). Production of visuals, posters and micro-formats. Development of artistic concepts for workshops and social media strategy.",
+                "xp3.role": "Co-Founder & Generative Design Lead",
+                "xp3.company": "Electric Vehicle Startup (stealth)",
+                "xp3.desc": "Founded and led a generative AI design collective originating from a Discord community built around early DALL-E experimentation, growing to 700,000 Instagram followers through documented exploration of biomimicry-based rendering techniques. Collaborated with Frank Stephenson, Pininfarina and Italdesign on tested electric vehicle concepts (aerodynamics, battery management systems). Co-founded a hand-built production startup; led fundraising toward EUR 19 million before project suspension in 2024.",
+                "xp4.role": "Programme Director & Communications Lead",
+                "xp4.company": "Ecozone — Dakar, Senegal",
+                "xp4.desc": "Took over a programme that had failed communicationally: rebuilt stakeholder trust between European donors, local partners and the founding organization. Secured a partnership with Extreme E, the off-road electric racing series operating under the FIA umbrella, for the Senegal leg of the championship. The programme remains operational today.",
+                "xp5.role": "Coordinator & Institutional Communications",
+                "xp5.company": "Multiple organisations — France, United Kingdom, West Africa",
+                "xp5.desc": "Produced the full communications output for more than fifty European programmes: institutional reports for EU donors, member briefings for partner organizations, newsletters, policy notes and strategic positioning documents for governance bodies operating under confidentiality and compliance constraints.",
+                "xp6.role": "Head of Events (UK)",
+                "xp6.desc": "Design and promotion of 200+ events in Birmingham. Development of cultural partnerships, 360° communication strategies and logistical coordination.",
+                "skills.hard": "Hard Skills",
+                "skill.1": "Creative Strategy",
+                "skill.2": "AI Narrative Design",
+                "skill.4": "Art Direction",
+                "skill.7": "Project Management",
+                "skills.soft": "Soft Skills",
+                "skills.softlist": "Empathy • Holistic Vision • Curiosity • Leadership • Resilience • Cultural Adaptability • Emotional Intelligence",
+                "skills.connections": "Connections",
+                "skills.languages": "Languages",
+                "section.lab": "The Lab",
+                "filter.all": "All",
+                "filter.research": "R&D / Testing",
+                "filter.motion": "Motion & Video"
+            },
+            es: {
+                "nav.vision": "Visión",
+                "nav.trajectory": "Trayectoria",
+                "nav.projects": "Proyectos",
+                "hero.tagline": "Estratega Creativo & Post-Humanista",
+                "hero.line1": "Hago las",
+                "hero.line2": 'visiones <span style="color:var(--accent)">legibles.</span>',
+                "hero.line3": "Y deseables.",
+                "hero.sub": "Branding, IA, diseño sistémico, soft power cultural. Opero en la frontera de lo sensible, lo simbólico y lo sistémico — para marcas que quieren definir su época.",
+                "hero.cv": "Descargar CV",
+                "manifesto.title": 'Una respuesta<br>al <span class="italic-accent" style="color:var(--accent);">Caos</span>.',
+                "manifesto.p1": 'Soy un hombre forjado por la <span class="italic-accent" style="color:var(--accent);">intensidad</span>. Cuando me concentro, es con una fuerza casi total: puedo apagar todo a mi alrededor para resolver un problema, diseñar un objeto, construir un proyecto. Avanzo como un <strong>tornado</strong>: en oleadas de creatividad fulminante, periodos de impulso bruto, seguidos de silencios necesarios.',
+                "manifesto.p2": 'Lo que persigo no es la novedad: es la <span class="italic-accent" style="color:var(--accent);">evidencia</span>. Una belleza que trasciende las épocas — como una carrocería italiana de los años 50, como el vuelo de un pájaro, como la mano de un escultor que abraza la materia. Creo en la elegancia útil. En la simplicidad que sana. La belleza, para mí, es más que un lujo; es una <strong>necesidad vital</strong>. Una respuesta al caos.',
+                "manifesto.p3": 'Mi fuerza viene de más allá de mí. Llevo la herencia de mis ancestros. Soy el fruto de un largo relato. Un padre, un esposo, un apasionado — pero también un soñador perseguido por la verdad del mundo. Mi mirada es la de un <span class="italic-accent" style="color:var(--accent);">humanista romántico</span>: a menudo maravillado, a veces herido. Pero siempre guiado por el deseo de crear sentido, vínculo, belleza. No para agradar — sino porque <strong>importa</strong>.',
+                "section.trajectory": "Trayectoria",
+                "xp1.year": "2021 — PRESENTE",
+                "xp1.role": "Consultor de Estrategia & Creación",
+                "xp1.desc": "Ingeniería de proyectos europeos: diseño de estrategias narrativas (storytelling, identidad) y dirección de contenidos. Creación visual aumentada por IA (Midjourney, DALL·E) y coordinación de producciones de marketing.",
+                "xp2.role": "Director Creativo & Digital",
+                "xp2.desc": "Gestión de campañas creativas (inclusión, memoria). Producción de visuales, carteles y micro-formatos. Desarrollo de conceptos artísticos para talleres y estrategia de redes sociales.",
+                "xp3.role": "Co-fundador & Director de Diseño Generativo",
+                "xp3.company": "Startup de Vehículo Eléctrico (stealth)",
+                "xp3.desc": "Creación y dirección de un colectivo de diseño generativo IA nacido de una comunidad Discord en torno a DALL-E, alcanzando 700.000 seguidores en Instagram mediante la exploración de técnicas de renderizado biomiméticas. Colaboración con Frank Stephenson, Pininfarina e Italdesign en conceptos de vehículos eléctricos probados (aerodinámica, sistemas de gestión de baterías). Co-fundación de una startup de producción artesanal; recaudación de 19 M€ antes de la suspensión del proyecto en 2024.",
+                "xp4.role": "Director de Programa & Comunicaciones",
+                "xp4.company": "Ecozone — Dakar, Senegal",
+                "xp4.desc": "Recuperación de un programa en fracaso comunicacional: reconstrucción de la confianza entre donantes europeos, socios locales y la organización fundadora. Obtención de una asociación con Extreme E, la serie de carreras eléctricas todo terreno bajo la égida de la FIA, para la etapa senegalesa del campeonato. El programa sigue operativo hoy.",
+                "xp5.role": "Coordinador & Comunicaciones Institucionales",
+                "xp5.company": "Múltiples organizaciones — Francia, Reino Unido, África Occidental",
+                "xp5.desc": "Producción del conjunto de comunicaciones para más de cincuenta programas europeos: informes institucionales para donantes de la UE, notas de briefing para organizaciones asociadas, newsletters, notas políticas y documentos de posicionamiento estratégico para órganos de gobernanza sujetos a restricciones de confidencialidad y conformidad.",
+                "xp6.role": "Director de Eventos (UK)",
+                "xp6.desc": "Diseño y promoción de más de 200 eventos en Birmingham. Desarrollo de asociaciones culturales, estrategias de comunicación 360° y coordinación logística.",
+                "skills.hard": "Competencias",
+                "skill.1": "Estrategia Creativa",
+                "skill.2": "Diseño Narrativo IA",
+                "skill.4": "Dirección Artística",
+                "skill.7": "Gestión de Proyectos",
+                "skills.soft": "Cualidades",
+                "skills.softlist": "Empatía • Visión Holística • Curiosidad • Liderazgo • Resiliencia • Adaptabilidad Cultural • Inteligencia Emocional",
+                "skills.connections": "Conexiones",
+                "skills.languages": "Idiomas",
+                "section.lab": "El Laboratorio",
+                "filter.all": "Todos",
+                "filter.research": "I+D / Ensayos",
+                "filter.motion": "Motion & Vídeo"
+            }
+        };
+
+        let currentLang = 'fr';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            const dict = translations[lang];
+            if (!dict) return;
+
+            // Update text-only elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key] !== undefined) el.textContent = dict[key];
+            });
+
+            // Update HTML elements (with inner tags like <span>, <strong>)
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const key = el.getAttribute('data-i18n-html');
+                if (dict[key] !== undefined) el.innerHTML = dict[key];
+            });
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+        }
+
+        // Bind language buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.getAttribute('data-lang'));
             });
         });
 
