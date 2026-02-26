@@ -202,11 +202,7 @@
             transform: scale(1.02);
         }
         
-        @media (max-width: 900px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .hero-image-wrapper { order: -1; height: 50vh; max-height: 400px; margin-bottom: 1rem; } 
-            .hero-text { font-size: 3.5rem; }
-        }
+        /* hero mobile handled in main responsive block below */
 
         /* BTN CV STYLE */
         .btn-cv {
@@ -517,80 +513,161 @@
         .footer-links a { color: var(--bg); border-bottom: 1px solid transparent; text-decoration: none; }
         .footer-links a:hover { border-bottom: 1px solid var(--bg); }
 
-        /* Responsive */
-/* --- CORRECTIF MOBILE (Remplace le bloc media query existant) --- */
-@media (max-width: 900px) {
-    
-    /* 1. Empecher le débordement horizontal (La barre noire) */
-    html, body {
-        width: 100vw;
-        overflow-x: hidden !important;
-        position: relative;
-    }
+        /* ============================================
+           RESPONSIVE — TABLET (max 900px)
+           ============================================ */
+        @media (max-width: 900px) {
 
-    /* 2. Reset des curseurs et effets lourds */
-    * { cursor: auto !important; }
-    .cursor-dot, .cursor-outline, .noise-overlay, .gradient-orb { display: none !important; }
+            /* --- BASE --- */
+            html, body { width: 100%; overflow-x: hidden !important; }
+            * { cursor: auto !important; }
+            .cursor-dot, .cursor-outline, .noise-overlay, .gradient-orb { display: none !important; }
+            .container { padding: 0 1.5rem; width: 100%; box-sizing: border-box; }
 
-    /* 3. Sécuriser les conteneurs */
-    .container { padding: 0 1.5rem; width: 100%; box-sizing: border-box; }
-    
-    /* 4. Gestion des titres qui "cassent" la largeur */
-    .hero-text, .section-title, .cta-huge {
-        font-size: 12vw !important; /* Taille fluide basée sur la largeur d'écran */
-        word-wrap: break-word; /* Coupe les mots si trop longs */
-        white-space: normal; /* Autorise le retour à la ligne */
-        width: 100%;
-    }
+            /* --- HEADER & NAV --- */
+            header { padding: 1rem 1.5rem; flex-wrap: wrap; gap: 0.8rem; }
+            .logo { font-size: 1.2rem; }
+            nav { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+            nav ul { gap: 1.2rem; flex-wrap: wrap; }
+            .nav-link { font-size: 0.7rem; letter-spacing: 0.5px; }
+            .lang-switcher { margin-left: auto; gap: 0.3rem; }
+            .lang-btn { padding: 0.25rem 0.5rem; font-size: 0.65rem; }
 
-    /* 5. Réparation du FOOTER (Le fond vert) */
-    footer {
-        width: 100vw !important; /* Force la largeur totale */
-        margin-left: -1.5rem; /* Compense le padding du container parent si besoin, ou ajuster selon ton body */
-        padding: 3rem 1rem;
-        box-sizing: border-box;
-        position: relative;
-        left: 0;
-    }
+            /* --- HERO --- */
+            .hero { min-height: auto; padding-top: 12vh; padding-bottom: 4vh; }
+            .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .hero-image-wrapper { order: -1; height: 45vh; max-height: 350px; margin-bottom: 1rem; }
+            .shift-content { padding-left: 0; }
+            .hero-text { font-size: clamp(2.5rem, 10vw, 4rem) !important; }
+            .hero-sub { max-width: 100%; font-size: 1rem; }
+            .btn-cv { margin-top: 2rem; padding: 0.8rem 1.5rem; font-size: 0.8rem; }
 
-    /* 6. Réparation du "LET'S TALK" (Le lien bleu) */
-    .cta-huge {
-        color: var(--bg) !important; /* Force le noir (ou ta couleur background) */
-        text-decoration: none !important; /* Enlève le soulignement bleu */
-        border-bottom: none !important;
-        display: block;
-        line-height: 0.9;
-        margin-bottom: 1.5rem;
-    }
-    
-    /* Pour être sûr que le lien ne devienne jamais bleu au clic */
-    .cta-huge:visited, .cta-huge:active, .cta-huge:hover {
-        color: var(--bg) !important;
-    }
+            /* --- SECTION TITLES --- */
+            .section-title {
+                font-size: clamp(2.5rem, 10vw, 5rem) !important;
+                padding-left: 0 !important;
+                word-break: break-word;
+            }
 
-    /* 7. Ajustement des cartes "Design Auto" */
-    .project-card {
-        grid-column: span 1;
-        width: 100%;
-        margin-bottom: 2rem; /* Espace entre les images */
-    }
-    
-    /* Rendre le texte lisible sur l'image sans hover */
-    .p-overlay {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 80%);
-    }
-    
-    /* Style du badge jaune sur mobile */
-    .card-tags {
-        top: 1rem; left: 1rem;
-    }
-    .card-tag {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.8rem;
-    }
-}
+            /* --- MANIFESTO --- */
+            #manifesto > div {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            #manifesto .shift-content { padding-left: 0; }
+            #manifesto .shift-content h2 { font-size: 2.2rem !important; }
+            .manifesto-text {
+                font-size: 1.1rem !important;
+                padding-right: 0 !important;
+            }
+
+            /* --- TIMELINE / TRAJECTOIRE --- */
+            .timeline-row {
+                grid-template-columns: 1fr !important;
+                gap: 0.5rem;
+                padding: 2rem 0;
+            }
+            .t-year { padding-left: 0 !important; font-size: 1.1rem; color: var(--accent); margin-bottom: 0.3rem; }
+            .t-content h3 { font-size: 1.6rem; }
+            .t-role { font-size: 0.8rem; }
+            .t-desc { max-width: 100%; font-size: 0.9rem; }
+
+            /* --- SKILLS / ARSENAL --- */
+            .arsenal-layout {
+                grid-template-columns: 1fr !important;
+                gap: 3rem !important;
+            }
+            .arsenal-left-padding { padding-left: 0 !important; }
+            .arsenal-title { font-size: 1.8rem; }
+            .skill-pill { padding: 0.6rem 1.2rem; font-size: 0.8rem; }
+            .soft-skills-text { padding-right: 0 !important; font-size: 1rem !important; }
+            .languages-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+
+            /* --- LAB / PROJETS --- */
+            .lab-header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                gap: 1.5rem;
+            }
+            .lab-header .section-title { padding-left: 0 !important; }
+            .filter-menu { flex-wrap: wrap; gap: 0.5rem; }
+            .filter-btn { padding: 0.5rem 0.9rem; font-size: 0.7rem; }
+            .work-grid {
+                grid-template-columns: 1fr !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                gap: 1.5rem;
+            }
+            .project-card { width: 100%; aspect-ratio: 16/10; }
+            .p-overlay {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 70%);
+            }
+            .p-title { font-size: 1.4rem; }
+            .card-tags { top: 1rem; left: 1rem; }
+            .card-tag { font-size: 0.65rem; padding: 0.3rem 0.7rem; }
+
+            /* --- FOOTER --- */
+            footer {
+                width: 100vw !important;
+                margin-left: calc(-1 * var(--gutter));
+                padding: 3rem 1.5rem;
+                box-sizing: border-box;
+                min-height: 35vh;
+            }
+            .cta-huge {
+                font-size: clamp(2.5rem, 12vw, 5rem) !important;
+                color: var(--bg) !important;
+                text-decoration: none !important;
+                border-bottom: none !important;
+                display: block;
+                line-height: 0.9;
+                margin-bottom: 1.5rem;
+            }
+            .cta-huge:visited, .cta-huge:active, .cta-huge:hover { color: var(--bg) !important; }
+            .footer-links { font-size: 0.8rem; gap: 1.5rem; }
+
+            /* --- SECTION PADDING --- */
+            .section-padding { padding: 3rem 0; }
+        }
+
+        /* ============================================
+           RESPONSIVE — SMALL PHONE (max 480px)
+           ============================================ */
+        @media (max-width: 480px) {
+
+            /* Header compact */
+            header { padding: 0.8rem 1rem; }
+            nav ul { gap: 0.8rem; }
+            .nav-link { font-size: 0.6rem; letter-spacing: 0; }
+            .lang-btn { padding: 0.2rem 0.4rem; font-size: 0.6rem; }
+
+            /* Hero even tighter */
+            .hero { padding-top: 14vh; }
+            .hero-text { font-size: clamp(2rem, 11vw, 3rem) !important; }
+            .hero-sub { font-size: 0.9rem; }
+            .hero-image-wrapper { height: 35vh; max-height: 280px; }
+
+            /* Manifesto */
+            #manifesto .shift-content h2 { font-size: 1.8rem !important; }
+            .manifesto-text { font-size: 1rem !important; }
+
+            /* Timeline */
+            .t-content h3 { font-size: 1.3rem; }
+
+            /* Skills */
+            .tags-wrapper { gap: 0.5rem; }
+            .skill-pill { padding: 0.5rem 1rem; font-size: 0.75rem; }
+
+            /* CTA */
+            .cta-huge { font-size: clamp(2rem, 14vw, 4rem) !important; }
+
+            /* Section titles */
+            .section-title { font-size: clamp(2rem, 11vw, 3.5rem) !important; }
+        }
     </style>
 </head>
 <body>
